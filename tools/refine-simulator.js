@@ -327,19 +327,19 @@ rangeSimBtn.addEventListener('click', function() {
         // Helper for Protection Stone type
         function getSimProtectionStoneType(level, material) {
             if (selectedEquipmentType === 'weapon') {
-                if (level >= 5 && level <= 8) return 'Weapon Protection Stone I';
-                if (level >= 9 && level <= 12) return 'Weapon Protection Stone II';
-                if (level >= 13 && level <= 15) return 'Weapon Protection Stone III';
+                if (level >= 4 && level <= 7) return 'Weapon Protection Stone I';
+                if (level >= 8 && level <= 11) return 'Weapon Protection Stone II';
+                if (level >= 12 && level <= 15) return 'Weapon Protection Stone III';
             }
             if (selectedEquipmentType === 'armor') {
-                if (level >= 5 && level <= 8) return 'Armor Protection Stone I';
-                if (level >= 9 && level <= 12) return 'Armor Protection Stone II';
-                if (level >= 13 && level <= 15) return 'Armor Protection Stone III';
+                if (level >= 4 && level <= 7) return 'Armor Protection Stone I';
+                if (level >= 8 && level <= 11) return 'Armor Protection Stone II';
+                if (level >= 12 && level <= 15) return 'Armor Protection Stone III';
             }
             if (selectedEquipmentType === 'accessory') {
-                if (level >= 5 && level <= 8) return 'Accessory Protection Stone I';
-                if (level >= 9 && level <= 12) return 'Accessory Protection Stone II';
-                if (level >= 13 && level <= 15) return 'Accessory Protection Stone III';
+                if (level >= 4 && level <= 7) return 'Accessory Protection Stone I';
+                if (level >= 8 && level <= 11) return 'Accessory Protection Stone II';
+                if (level >= 12 && level <= 15) return 'Accessory Protection Stone III';
             }
             return null;
         }
@@ -415,6 +415,36 @@ rangeSimBtn.addEventListener('click', function() {
                     }
                 }
             } else {
+                // Always add Protection Stones for safe refining if level >= 4
+                const protectType = getSimProtectionStoneType(simLevelCurrent, blessedMaterial);
+                // Calculate protection stone quantity - same as the base material amount
+                let protectQty = 0;
+                const minfo = getSimMaterialInfo(simLevelCurrent);
+                if (minfo) {
+                    protectQty = minfo.base + minfo.enriched + minfo.hd + minfo.uhd;
+                }
+                
+                if (protectType && protectQty > 0) {
+                    if (!simBlessedStones[protectType]) simBlessedStones[protectType] = { qty: 0, cost: 0 };
+                    const protectPrice = getSimProtectionStonePrice(protectType, blessedMaterial);
+                    simBlessedStones[protectType].qty += protectQty;
+                    simBlessedStones[protectType].cost += protectQty * protectPrice;
+                    simTotal += protectQty * protectPrice;
+                }
+                
+                // Additional Blessed Stones if checkbox is checked
+                if (blessedChecked && simLevelCurrent >= 5) {
+                    blessedStoneType = getSimBlessedStoneType(simLevelCurrent, blessedMaterial);
+                    if (blessedStoneType) {
+                        let qty = getSimBlessedStoneAmount();
+                        if (!simBlessedStones[blessedStoneType]) simBlessedStones[blessedStoneType] = { qty: 0, cost: 0 };
+                        simBlessedStones[blessedStoneType].qty += qty;
+                        simBlessedStones[blessedStoneType].cost += qty * getSimBlessedStonePrice(blessedStoneType, blessedMaterial);
+                        simTotal += qty * getSimBlessedStonePrice(blessedStoneType, blessedMaterial);
+                        simBlessed++;
+                    }
+                }
+                
                 if (rand < rates.success) {
                     outcome = 'success';
                     simSuccess++;
@@ -427,19 +457,18 @@ rangeSimBtn.addEventListener('click', function() {
                     if (blessedChecked) {
                         blessedStoneType = getSimBlessedStoneType(simLevelCurrent, blessedMaterial);
                         if (blessedStoneType) {
-                            let qty = getSimBlessedStoneAmount();
-                            if (!simBlessedStones[blessedStoneType]) simBlessedStones[blessedStoneType] = { qty: 0, cost: 0 };
-                            simBlessedStones[blessedStoneType].qty += qty;
-                            simBlessedStones[blessedStoneType].cost += qty * getSimBlessedStonePrice(blessedStoneType, blessedMaterial);
-                            simTotal += qty * getSimBlessedStonePrice(blessedStoneType, blessedMaterial);
-                            simBlessed++;
+                            result = 'Saved by Blessed & Protection Stone';
+                            colorClass = 'blessed';
+                            blessedStoneUsed = true;
                         } else {
-                            outcome = 'break';
-                            simBreak++;
+                            result = 'Break';
+                            colorClass = 'break';
+                            broke = true;
                         }
                     } else {
-                        outcome = 'break';
-                        simBreak++;
+                        result = 'Break';
+                        colorClass = 'break';
+                        broke = true;
                     }
                 }
             }
@@ -782,7 +811,23 @@ function attemptRefine() {
                 }
             }
         } else if (selectedRefineType === 'safe') {
-            // Always add Protection Stones if blessedChecked and level >= 5
+            // Always add Protection Stones for safe refining if level >= 4
+            const protectType = getProtectionStoneType(currentRefineLevel, blessedMaterial);
+            // Calculate protection stone quantity - same as the base material amount
+            let protectQty = 0;
+            if (info) {
+                protectQty = info.base + info.enriched + info.hd + info.uhd;
+            }
+            
+            if (protectType && protectQty > 0) {
+                if (!sessionMaterials[protectType]) sessionMaterials[protectType] = { qty: 0, cost: 0 };
+                const protectPrice = getProtectionStonePrice(protectType, blessedMaterial);
+                sessionMaterials[protectType].qty += protectQty;
+                sessionMaterials[protectType].cost += protectQty * protectPrice;
+                sessionTotal += protectQty * protectPrice;
+            }
+            
+            // Additional Blessed Stones if checkbox is checked
             if (blessedChecked && currentRefineLevel >= 5) {
                 blessedStoneType = getBlessedStoneType(currentRefineLevel, blessedMaterial);
                 // Double Blessed Stones
@@ -794,17 +839,8 @@ function attemptRefine() {
                     sessionMaterials[blessedStoneType].cost += blessedQty * blessedPrice;
                     sessionTotal += blessedQty * blessedPrice;
                 }
-                // Protection Stones (same amount as normal Blessed Stones)
-                const protectType = getProtectionStoneType(currentRefineLevel, blessedMaterial);
-                const protectQty = getBlessedStoneAmount();
-                if (protectType) {
-                    if (!sessionMaterials[protectType]) sessionMaterials[protectType] = { qty: 0, cost: 0 };
-                    const protectPrice = getProtectionStonePrice(protectType, blessedMaterial);
-                    sessionMaterials[protectType].qty += protectQty;
-                    sessionMaterials[protectType].cost += protectQty * protectPrice;
-                    sessionTotal += protectQty * protectPrice;
-                }
             }
+            
             if (rand < rates.success) {
                 result = 'Success';
                 colorClass = 'success';
@@ -815,7 +851,7 @@ function attemptRefine() {
             } else if (rates.break && rand < rates.success + rates.fail + rates.break) {
                 wouldBreak = true;
                 if (blessedChecked) {
-                    blessedStoneType = getBlessedStoneType(currentRefineLevel, blessedMaterial);
+                    blessedStoneType = getSimBlessedStoneType(currentRefineLevel, blessedMaterial);
                     if (blessedStoneType) {
                         result = 'Saved by Blessed & Protection Stone';
                         colorClass = 'blessed';
@@ -1213,4 +1249,39 @@ function deferInit() {
     updateRefineChance();
     updateSessionSummaryBox();
     updateWeaponImage();
+}
+
+// New function to get Protection Stone type based on refinement level and material
+function getProtectionStoneType(level, material) {
+    // Material: Oridecon (weapon), Elunium (armor), Bradium (accessory)
+    if (material === 'Oridecon') {
+        if (level >= 4 && level <= 7) return 'Weapon Protection Stone I';
+        if (level >= 8 && level <= 11) return 'Weapon Protection Stone II';
+        if (level >= 12 && level <= 15) return 'Weapon Protection Stone III';
+    } else if (material === 'Elunium') {
+        if (level >= 4 && level <= 7) return 'Armor Protection Stone I';
+        if (level >= 8 && level <= 11) return 'Armor Protection Stone II';
+        if (level >= 12 && level <= 15) return 'Armor Protection Stone III';
+    } else if (material === 'Bradium') {
+        if (level >= 4 && level <= 7) return 'Accessory Protection Stone I';
+        if (level >= 8 && level <= 11) return 'Accessory Protection Stone II';
+        if (level >= 12 && level <= 15) return 'Accessory Protection Stone III';
+    }
+    return null;
+}
+
+// New function to get Protection Stone price
+function getProtectionStonePrice(type, material) {
+    if (!type) return 0;
+    let id = '';
+    if (type.endsWith('I')) id = '1';
+    else if (type.endsWith('II')) id = '2';
+    else if (type.endsWith('III')) id = '3';
+    
+    let matPrefix = '';
+    if (material === 'Oridecon') matPrefix = 'weapon';
+    else if (material === 'Elunium') matPrefix = 'armor';
+    else if (material === 'Bradium') matPrefix = 'accessory';
+    
+    return Number(document.getElementById('price-' + matPrefix + 'protectionstone' + id).value) || 0;
 } 
