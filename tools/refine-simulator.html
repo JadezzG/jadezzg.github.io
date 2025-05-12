@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Refine Simulator - Jadezz RoxManager</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="refine-simulator.css">
+    <!-- Favicon -->
+    <link rel="icon" href="img/profile_pic.png" type="image/png">
+    <!-- Google AdSense Code -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <img src="img/profile_pic.png" alt="Jadezz" class="logo-image">
+                Jadezz - RoxManager
+            </div>
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../index.html#tools">Tools</a></li>
+                <li><a href="../index.html#guides">Guides</a></li>
+                <li><a href="../index.html#about">About</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Theme toggle floating button -->
+    <button id="theme-toggle" class="theme-toggle-floating" aria-label="Toggle dark/light mode">
+        <i class="fas fa-moon"></i>
+        <i class="fas fa-sun"></i>
+    </button>
+
+    <div class="page-wrapper">
+        <div class="left-sidebar">
+            <!-- YouTube Channel Container -->
+            <div class="social-container youtube-container">
+                <a href="https://www.youtube.com/@JadezzGaming" target="_blank" rel="noopener">
+                    <div class="social-header">
+                        <img src="img/profile_pic.png" alt="Jadezz" class="social-profile-pic">
+                        <h3>JadezzGaming</h3>
+                    </div>
+                    <div class="social-content">
+                        <p>Check out RoX Next Generation guides and gameplay!</p>
+                        <span class="social-btn">Visit Channel</span>
+                    </div>
+                </a>
+            </div>
+            
+            <!-- Discord Container -->
+            <div class="social-container discord-container">
+                <a href="https://discord.gg/9buNDsK3Nt" target="_blank" rel="noopener">
+                    <div class="social-header">
+                        <img src="img/profile_pic.png" alt="Jadezz" class="social-profile-pic">
+                        <h3>Ragnarok University</h3>
+                    </div>
+                    <div class="social-content">
+                        <p>Join our Discord community for tips and discussions!</p>
+                        <span class="social-btn">Join Discord</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <div class="simulator-flex-wrapper">
+            <main>
+                <div class="refine-simulator">
+                    <h1>Jadezz - Refine Simulator</h1>
+                    <p class="simulator-tagline">The most advanced RoX Next Generation refine simulator of 2025</p>
+                    
+                    <div class="price-section-collapsible">
+                        <button id="toggle-price-section" class="toggle-btn" aria-expanded="false">
+                            <span id="toggle-price-icon">▶</span> Material Prices
+                        </button>
+                        <div class="price-section" id="price-section-content" style="display:none;">
+                            <h2>Material Prices</h2>
+                            <div class="price-grid price-grid-3col">
+                                <div class="price-col oridecon-col">
+                                    <div><label><img src="img/oridecon.png" alt="Oridecon" class="mat-icon"> Oridecon<br><input type="number" id="price-oridecon" value="1530"></label></div>
+                                    <div><label><img src="img/enriched-oridecon.png" alt="Enriched Oridecon" class="mat-icon"> Enriched Oridecon<br><input type="number" id="price-enriched-oridecon" value="2820"></label></div>
+                                    <div><label><img src="img/hd-oridecon.png" alt="HD Oridecon" class="mat-icon"> HD Oridecon<br><input type="number" id="price-hd-oridecon" value="11000"></label></div>
+                                    <div><label><img src="img/uhd-oridecon.png" alt="UHD Oridecon" class="mat-icon"> UHD Oridecon<br><input type="number" id="price-uhd-oridecon" value="50700"></label></div>
+                                    <div><label><img src="img/blessedoridecon1.png" alt="Blessed Oridecon I" class="mat-icon"> Blessed Oridecon I<br><input type="number" id="price-blessedoridecon1" value="5820"></label></div>
+                                    <div><label><img src="img/blessedoridecon2.png" alt="Blessed Oridecon II" class="mat-icon"> Blessed Oridecon II<br><input type="number" id="price-blessedoridecon2" value="13100"></label></div>
+                                    <div><label><img src="img/blessedoridecon3.png" alt="Blessed Oridecon III" class="mat-icon"> Blessed Oridecon III<br><input type="number" id="price-blessedoridecon3" value="43600"></label></div>
+                                    <div><label><img src="img/weaponprotectionstone1.png" alt="Weapon Protection Stone I" class="mat-icon"> Weapon Protection Stone I<br><input type="number" id="price-weaponprotectionstone1" value="4860"></label></div>
+                                </div>
+                                <div class="price-col bradium-col">
+                                    <div><label><img src="img/bradium.png" alt="Bradium" class="mat-icon"> Bradium<br><input type="number" id="price-bradium" value="1530"></label></div>
+                                    <div><label><img src="img/enriched-bradium.png" alt="Enriched Bradium" class="mat-icon"> Enriched Bradium<br><input type="number" id="price-enriched-bradium" value="2820"></label></div>
+                                    <div><label><img src="img/hd-bradium.png" alt="HD Bradium" class="mat-icon"> HD Bradium<br><input type="number" id="price-hd-bradium" value="11000"></label></div>
+                                    <div><label><img src="img/uhd-bradium.png" alt="UHD Bradium" class="mat-icon"> UHD Bradium<br><input type="number" id="price-uhd-bradium" value="50700"></label></div>
+                                    <div><label><img src="img/blessedbradium1.png" alt="Blessed Bradium I" class="mat-icon"> Blessed Bradium I<br><input type="number" id="price-blessedbradium1" value="5820"></label></div>
+                                    <div><label><img src="img/blessedbradium2.png" alt="Blessed Bradium II" class="mat-icon"> Blessed Bradium II<br><input type="number" id="price-blessedbradium2" value="13100"></label></div>
+                                    <div><label><img src="img/blessedbradium3.png" alt="Blessed Bradium III" class="mat-icon"> Blessed Bradium III<br><input type="number" id="price-blessedbradium3" value="43600"></label></div>
+                                    <div><label><img src="img/accessoryprotectionstone1.png" alt="Accessory Protection Stone I" class="mat-icon"> Accessory Protection Stone I<br><input type="number" id="price-accessoryprotectionstone1" value="5160"></label></div>
+                                    <div><label><img src="img/accessoryprotectionstone2.png" alt="Accessory Protection Stone II" class="mat-icon"> Accessory Protection Stone II<br><input type="number" id="price-accessoryprotectionstone2" value="19700"></label></div>
+                                    <div><label><img src="img/accessoryprotectionstone3.png" alt="Accessory Protection Stone III" class="mat-icon"> Accessory Protection Stone III<br><input type="number" id="price-accessoryprotectionstone3" value="113000"></label></div>
+                                </div>
+                                <div class="price-col elunium-col">
+                                    <div><label><img src="img/elunium.png" alt="Elunium" class="mat-icon"> Elunium<br><input type="number" id="price-elunium" value="1530"></label></div>
+                                    <div><label><img src="img/enriched-elunium.png" alt="Enriched Elunium" class="mat-icon"> Enriched Elunium<br><input type="number" id="price-enriched-elunium" value="2820"></label></div>
+                                    <div><label><img src="img/hd-elunium.png" alt="HD Elunium" class="mat-icon"> HD Elunium<br><input type="number" id="price-hd-elunium" value="11000"></label></div>
+                                    <div><label><img src="img/uhd-elunium.png" alt="UHD Elunium" class="mat-icon"> UHD Elunium<br><input type="number" id="price-uhd-elunium" value="50700"></label></div>
+                                    <div><label><img src="img/blessedelunium1.png" alt="Blessed Elunium I" class="mat-icon"> Blessed Elunium I<br><input type="number" id="price-blessedelunium1" value="5820"></label></div>
+                                    <div><label><img src="img/blessedelunium2.png" alt="Blessed Elunium II" class="mat-icon"> Blessed Elunium II<br><input type="number" id="price-blessedelunium2" value="13100"></label></div>
+                                    <div><label><img src="img/blessedelunium3.png" alt="Blessed Elunium III" class="mat-icon"> Blessed Elunium III<br><input type="number" id="price-blessedelunium3" value="43600"></label></div>
+                                    <div><label><img src="img/armorprotectionstone1.png" alt="Armor Protection Stone I" class="mat-icon"> Armor Protection Stone I<br><input type="number" id="price-armorprotectionstone1" value="3190"></label></div>
+                                    <div><label><img src="img/armorprotectionstone2.png" alt="Armor Protection Stone II" class="mat-icon"> Armor Protection Stone II<br><input type="number" id="price-armorprotectionstone2" value="10700"></label></div>
+                                    <div><label><img src="img/armorprotectionstone3.png" alt="Armor Protection Stone III" class="mat-icon"> Armor Protection Stone III<br><input type="number" id="price-armorprotectionstone3" value="50700"></label></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="equipment-section">
+                        <h2>Equipment</h2>
+                        <div class="equipment-selector">
+                            <select id="equipment-type">
+                                <option value="">Select Equipment Type</option>
+                                <option value="weapon">Weapon</option>
+                                <option value="armor">Armor</option>
+                                <option value="accessory">Accessory</option>
+                            </select>
+                            <select id="weapon-type" style="display:none;" disabled>
+                                <option value="">Select Weapon Type</option>
+                                <option value="two-handed">Two-Handed</option>
+                                <option value="one-handed">One-Handed</option>
+                                <option value="dagger">Dagger</option>
+                                <option value="shield">Shield</option>
+                            </select>
+                            <select id="rarity-select" style="display:none;" disabled>
+                                <option value="">Select Rarity</option>
+                                <!-- Options will be set dynamically -->
+                            </select>
+                            <select id="equipment-level" disabled>
+                                <option value="">Select Level</option>
+                                <option value="0">+0</option>
+                                <option value="1">+1</option>
+                                <option value="2">+2</option>
+                                <option value="3">+3</option>
+                                <option value="4">+4</option>
+                                <option value="5">+5</option>
+                                <option value="6">+6</option>
+                                <option value="7">+7</option>
+                                <option value="8">+8</option>
+                                <option value="9">+9</option>
+                                <option value="10">+10</option>
+                                <option value="11">+11</option>
+                                <option value="12">+12</option>
+                                <option value="13">+13</option>
+                                <option value="14">+14</option>
+                            </select>
+                        </div>
+                        <div class="refine-type-selector">
+                            <label><img src="img/oridecon.png" alt="Oridecon Icon" class="mat-icon"><input type="radio" name="refine-type" value="regular" checked id="regular-refine-radio"> Regular</label>
+                            <label><img src="img/weaponprotectionstone1.png" alt="Weapon Protection Stone Icon" class="mat-icon"><input type="radio" name="refine-type" value="safe" id="safe-refine-radio"> Safe</label>
+                            
+                            <!-- Container für das Waffenbild und den Level-Overlay -->
+                            <div class="weapon-display-container">
+                                <div id="weapon-image-box" style="display:none;">
+                                    <img id="weapon-image" src="" alt="Selected Weapon">
+                                    <div id="current-refine-level-right">+0</div>
+                                </div>
+                                <div id="refine-result-message"></div>
+                            </div>
+
+                            <label class="blessed-checkbox-label-inline">
+                                <img src="img/blessedoridecon1.png" alt="Blessed Stone Icon" class="mat-icon" style="vertical-align:middle; margin-right:4px;"> <input type="checkbox" id="blessed-stone-checkbox"> Use Blessed Stones
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="range-toggle-row">
+                        <label class="range-toggle-label">
+                            <input type="checkbox" id="range-sim-toggle" disabled> Range Simulator
+                        </label>
+                    </div>
+                    <div class="range-simulator-section" id="range-simulator-section" style="display:none;">
+                        <div class="range-sim-row">
+                            <label>Start Level:
+                                <select id="range-start-level">
+                                    <option value="0">+0</option>
+                                    <option value="1">+1</option>
+                                    <option value="2">+2</option>
+                                    <option value="3">+3</option>
+                                    <option value="4">+4</option>
+                                    <option value="5">+5</option>
+                                    <option value="6">+6</option>
+                                    <option value="7">+7</option>
+                                    <option value="8">+8</option>
+                                    <option value="9">+9</option>
+                                    <option value="10">+10</option>
+                                    <option value="11">+11</option>
+                                    <option value="12">+12</option>
+                                    <option value="13">+13</option>
+                                    <option value="14">+14</option>
+                                </select>
+                            </label>
+                            <label>End Level:
+                                <select id="range-end-level">
+                                    <option value="1">+1</option>
+                                    <option value="2">+2</option>
+                                    <option value="3">+3</option>
+                                    <option value="4">+4</option>
+                                    <option value="5">+5</option>
+                                    <option value="6">+6</option>
+                                    <option value="7">+7</option>
+                                    <option value="8">+8</option>
+                                    <option value="9">+9</option>
+                                    <option value="10">+10</option>
+                                    <option value="11">+11</option>
+                                    <option value="12">+12</option>
+                                    <option value="13">+13</option>
+                                    <option value="14">+14</option>
+                                    <option value="15">+15</option>
+                                </select>
+                            </label>
+                            <button id="range-simulate-btn" class="tool-button" disabled>Simulate Range</button>
+                        </div>
+                        <div class="range-sim-row">
+                            <label class="blessed-checkbox-label-inline">
+                                <input type="checkbox" id="run-multiple-sims"> Run 1000 simulations for average results
+                            </label>
+                        </div>
+                        <div id="range-sim-result" class="range-sim-result"></div>
+                    </div>
+                    
+                    <div class="refine-controls">
+                        <button id="refine-button" class="tool-button">Refine</button>
+                        <button id="reset-button" class="tool-button secondary">Reset</button>
+                    </div>
+
+                    <div class="refine-section">
+                        <h2>Refine Status</h2>
+                        <div class="refine-status">
+                            <div class="current-refine">
+                                <span>Current Refine Level:</span>
+                                <span id="current-level">0</span>
+                            </div>
+                            <div class="refine-chance">
+                                <span>Success Rate:</span>
+                                <span id="success-rate">100%</span>
+                            </div>
+                            <div class="refine-chance" id="fail-rate-box" style="display:none;">
+                                <span>Fail Rate:</span>
+                                <span id="fail-rate">0%</span>
+                            </div>
+                            <div class="refine-chance" id="downgrade-rate-box" style="display:none;">
+                                <span>Downgrade Rate:</span>
+                                <span id="downgrade-rate">0%</span>
+                            </div>
+                            <div class="refine-chance" id="break-rate-box" style="display:none;">
+                                <span>Break Rate:</span>
+                                <span id="break-rate">0%</span>
+                            </div>
+                        </div>
+                        <div class="material-cost-info" id="material-cost-info" style="display:none;"></div>
+                    </div>
+
+                    <div class="history-section">
+                        <h2>Refine History</h2>
+                        <div id="refine-history" class="history-list">
+                            <!-- Refine attempts will be displayed here -->
+                        </div>
+                    </div>
+                </div>
+            </main>
+            <div class="right-sidebar">
+                <div id="session-summary-box" class="session-summary-box">
+                    <h3>Used Materials</h3>
+                    <div style="color:#888;">No materials used yet.</div>
+                </div>
+                
+                <!-- AdSense Ad Container - Sidebar -->
+                <div class="ad-container ad-container-sidebar">
+                    <ins class="adsbygoogle"
+                         style="display:block"
+                         data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+                         data-ad-slot="XXXXXXXXXX"
+                         data-ad-format="auto"
+                         data-full-width-responsive="true"></ins>
+                    <script>
+                         (adsbygoogle = window.adsbygoogle || []).push({});
+                    </script>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <img src="img/profile_pic.png" alt="Jadezz" class="footer-logo">
+            <p>&copy; 2025 Jadezz - RoxManager - Ragnarok X Tools. All rights reserved.</p>
+            <p class="disclaimer">This website is not affiliated with Gravity Co., Ltd. or Ragnarok X: Next Generation.</p>
+        </div>
+    </footer>
+
+    <!-- Sound effects -->
+    <audio id="sound-success" src="sounds/refine_success.mp3" preload="auto"></audio>
+    <audio id="sound-fail" src="sounds/refine_fail.mp3" preload="auto"></audio>
+
+    <script src="refine-simulator.js"></script>
+</body>
+</html> 
