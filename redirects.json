@@ -1,0 +1,14 @@
+{
+  "redirects": [
+    {
+      "source": "/",
+      "destination": "/index.html",
+      "permanent": true
+    },
+    {
+      "source": "/tools/refine-simulator.html",
+      "destination": "/tools/refine-simulator.html",
+      "permanent": true
+    }
+  ]
+} 

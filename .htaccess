@@ -1,4 +1,26 @@
-# RewriteEngine On
-# RewriteCond %{HTTP_HOST} ^roxmanager\.com$ [NC]
-# RewriteCond %{REQUEST_URI} ^/$
-# RewriteRule ^(.*)$ /tools/refine-simulator.html [L,R=301] 
+# Prevent recursive redirects
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    
+    # Prevent recursive appending of /tools/refine-simulator.html
+    RewriteCond %{THE_REQUEST} tools/refine-simulator\.html/(.*) [NC]
+    RewriteRule ^ /tools/refine-simulator.html [L,R=301]
+    
+    # Stop processing if we're already on index.html
+    RewriteCond %{REQUEST_URI} ^/index\.html$
+    RewriteRule ^ - [L]
+    
+    # Base rule for homepage
+    RewriteCond %{HTTP_HOST} ^roxmanager\.com$ [NC]
+    RewriteCond %{REQUEST_URI} ^/$
+    RewriteRule ^ /index.html [L]
+</IfModule>
+
+# Prevent caching of potentially problematic files
+<IfModule mod_headers.c>
+    <FilesMatch "\.(html|htm|php)$">
+        Header set Cache-Control "no-cache, no-store, must-revalidate"
+        Header set Pragma "no-cache"
+        Header set Expires "0"
+    </FilesMatch>
+</IfModule> 

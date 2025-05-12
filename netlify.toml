@@ -1,0 +1,18 @@
+# Prevent recursive redirects
+[[redirects]]
+  from = "/tools/refine-simulator.html/*"
+  to = "/tools/refine-simulator.html"
+  status = 301
+  force = true
+
+# Standard rules
+[[redirects]]
+  from = "/"
+  to = "/index.html"
+  status = 200
+
+# 404 handler
+[[redirects]]
+  from = "/*"
+  to = "/404.html"
+  status = 404 
