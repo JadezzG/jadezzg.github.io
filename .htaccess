@@ -1,4 +1,4 @@
-RewriteEngine On
-RewriteCond %{HTTP_HOST} ^roxmanager\.com$ [NC]
-RewriteCond %{REQUEST_URI} ^/$
-RewriteRule ^(.*)$ /tools/refine-simulator.html [L,R=301] 
+# RewriteEngine On
+# RewriteCond %{HTTP_HOST} ^roxmanager\.com$ [NC]
+# RewriteCond %{REQUEST_URI} ^/$
+# RewriteRule ^(.*)$ /tools/refine-simulator.html [L,R=301] 
