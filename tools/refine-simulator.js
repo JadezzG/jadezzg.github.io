@@ -873,7 +873,10 @@ function updateWeaponImage() {
     if (!weaponImageBox || !weaponImage) return;
     
     // Make image visible if we have appropriate selections
-    if (selectedEquipmentType === 'weapon' && selectedWeaponType && selectedRarity) {
+    if ((selectedEquipmentType === 'weapon' && selectedWeaponType && selectedRarity) ||
+        (selectedEquipmentType === 'armor' && selectedRarity) ||
+        (selectedEquipmentType === 'accessory' && selectedRarity)) {
+        
         weaponImageBox.style.display = '';
         
         // Set image source based on equipment type, weapon type, and rarity
@@ -895,9 +898,21 @@ function updateWeaponImage() {
                     weaponImage.src = 'img/1hand_white.png';
                 }
             } else if (selectedWeaponType === 'dagger') {
-                weaponImage.src = 'img/dagger.png';
+                if (selectedRarity === 'gold') {
+                    weaponImage.src = 'img/dagger_gold.png';
+                } else if (selectedRarity === 'blue') {
+                    weaponImage.src = 'img/dagger_blue.png';
+                } else {
+                    weaponImage.src = 'img/dagger_white.png';
+                }
             } else if (selectedWeaponType === 'shield') {
-                weaponImage.src = 'img/shield.png';
+                if (selectedRarity === 'gold') {
+                    weaponImage.src = 'img/shield_gold.png';
+                } else if (selectedRarity === 'blue') {
+                    weaponImage.src = 'img/shield_blue.png';
+                } else {
+                    weaponImage.src = 'img/shield_white.png';
+                }
             }
         } else if (selectedEquipmentType === 'armor') {
             if (selectedRarity === 'purple') {
@@ -909,11 +924,11 @@ function updateWeaponImage() {
             }
         } else if (selectedEquipmentType === 'accessory') {
             if (selectedRarity === 'gold') {
-                weaponImage.src = 'img/accessory_gold.png';
+                weaponImage.src = 'img/acce_gold.png';
             } else if (selectedRarity === 'blue') {
-                weaponImage.src = 'img/accessory_blue.png';
+                weaponImage.src = 'img/acce_blue.png';
             } else {
-                weaponImage.src = 'img/accessory_white.png';
+                weaponImage.src = 'img/acce_white.png';
             }
         }
         
