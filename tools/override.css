@@ -1,0 +1,62 @@
+/**
+ * Override CSS for Safe Refine Button
+ * These styles ensure the Safe Refine radio button is always usable regardless of refinement level
+ */
+
+/* Target the Safe Refine radio button directly */
+#safe-refine-radio,
+#safe-refine-radio:disabled,
+#safe-refine-radio[disabled] {
+    opacity: 1 !important;
+    pointer-events: auto !important;
+    cursor: pointer !important;
+    -webkit-appearance: auto !important;
+    appearance: auto !important;
+    filter: none !important;
+    user-select: auto !important;
+}
+
+/* Target by name and value */
+input[type="radio"][name="refine-type"][value="safe"] {
+    pointer-events: auto !important;
+    opacity: 1 !important;
+    cursor: pointer !important;
+    user-select: auto !important;
+    filter: none !important;
+}
+
+/* Target the parent label */
+.refine-type-selector label,
+.refine-type-selector label.disabled,
+label[for="safe-refine-radio"],
+label[for="safe-refine-radio"].disabled {
+    opacity: 1 !important;
+    pointer-events: auto !important;
+    cursor: pointer !important;
+    filter: none !important;
+    color: var(--text-color, #333) !important;
+}
+
+/* Target the radio button container */
+.refine-type-selector .radio-option,
+.refine-type-selector .radio-option.disabled {
+    opacity: 1 !important;
+    pointer-events: auto !important;
+    filter: none !important;
+}
+
+/* Force visibility for any potential parent containers */
+.refine-type-selector,
+.radio-group,
+.refine-options {
+    opacity: 1 !important;
+    display: flex !important;
+    visibility: visible !important;
+}
+
+/* Remove any visual indication of being disabled */
+#safe-refine-radio + span,
+label[for="safe-refine-radio"] span {
+    opacity: 1 !important;
+    color: var(--text-color, #333) !important;
+} 

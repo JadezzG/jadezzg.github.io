@@ -3,6 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Early Safe Button Fix (runs before page load) -->
+    <script>
+        (function() {
+            // This runs very early, even before DOM is fully ready
+            document.addEventListener('DOMContentLoaded', function() {
+                // Find the Safe Refine radio button as soon as DOM is ready
+                const safeRefineRadio = document.getElementById('safe-refine-radio');
+                if (safeRefineRadio) {
+                    // Permanently override its disabled property
+                    Object.defineProperty(safeRefineRadio, 'disabled', {
+                        configurable: true,
+                        get: function() { return false; },
+                        set: function() { /* Prevent disabling */ }
+                    });
+                    
+                    // Remove the disabled attribute
+                    safeRefineRadio.removeAttribute('disabled');
+                }
+            });
+            
+            // Create a MutationObserver to watch for the button's creation
+            const observer = new MutationObserver(function(mutations) {
+                const safeRefineRadio = document.getElementById('safe-refine-radio');
+                if (safeRefineRadio) {
+                    // Element found, apply fixes
+                    safeRefineRadio.disabled = false;
+                    safeRefineRadio.removeAttribute('disabled');
+                    
+                    // Apply inline styles
+                    safeRefineRadio.style.pointerEvents = 'auto';
+                    safeRefineRadio.style.opacity = '1';
+                    safeRefineRadio.style.cursor = 'pointer';
+                    
+                    // Disconnect observer once found
+                    observer.disconnect();
+                }
+            });
+            
+            // Start observing as soon as body is available
+            if (document.body) {
+                observer.observe(document.body, { childList: true, subtree: true });
+            } else {
+                window.addEventListener('DOMContentLoaded', function() {
+                    observer.observe(document.body, { childList: true, subtree: true });
+                });
+            }
+        })();
+    </script>
+    
     <meta name="google-adsense-account" content="ca-pub-5278020554404687">
     
     <!-- SEO Meta Tags -->
@@ -21,6 +71,7 @@
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="refine-simulator.css">
+    <link rel="stylesheet" href="override.css">
     <!-- Favicon -->
     <link rel="icon" href="img/profile_pic.png" type="image/png">
     
@@ -348,5 +399,7 @@
     <audio id="sound-fail" src="sounds/refine_fail.mp3" preload="auto"></audio>
 
     <script src="refine-simulator.js"></script>
+    <!-- Script to ensure safe refine button is always enabled -->
+    <script src="fix-safe-button.js"></script>
 </body>
 </html> 

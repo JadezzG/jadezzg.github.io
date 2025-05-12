@@ -18,10 +18,10 @@ const REGULAR_REFINEMENT = {
 };
 
 const SAFE_REFINEMENT = {
-    0: { success: 100, fail: 0, break: 0 },
-    1: { success: 100, fail: 0, break: 0 },
-    2: { success: 100, fail: 0, break: 0 },
-    3: { success: 100, fail: 0, break: 0 },
+    0: { success: 100, fail: 0, downgrade: 0, break: 0 },
+    1: { success: 50, fail: 50, downgrade: 0, break: 0 },
+    2: { success: 33, fail: 67, downgrade: 0, break: 0 },
+    3: { success: 25, fail: 75, downgrade: 0, break: 0 },
     4: { success: 20, fail: 60, break: 20 },
     5: { success: 13.33, fail: 61.67, break: 25 },
     6: { success: 10, fail: 60, break: 30 },
@@ -89,6 +89,20 @@ let lastEquipmentType = '';
 // Event Listeners
 refineTypeRadios.forEach(radio => {
     radio.addEventListener('change', updateRefineChance);
+    
+    // Prevent any disabling through event listeners
+    const originalAddEventListener = radio.addEventListener;
+    radio.addEventListener = function(type, handler, options) {
+        if (type === 'change' || type === 'click') {
+            const wrappedHandler = function(e) {
+                const result = handler.apply(this, arguments);
+                ensureSafeRefineEnabled();
+                return result;
+            };
+            return originalAddEventListener.call(this, type, wrappedHandler, options);
+        }
+        return originalAddEventListener.call(this, type, handler, options);
+    };
 });
 equipmentTypeSelect.addEventListener('change', function() {
     updateRarityOptions();
@@ -443,63 +457,105 @@ rangeSimBtn.addEventListener('click', function() {
                     }
                 }
             } else {
-                // Always add Protection Stones for safe refining if level >= 4
-                const protectType = getSimProtectionStoneType(simLevelCurrent, blessedMaterial);
-                // Calculate protection stone quantity - same as the base material amount
-                let protectQty = 0;
-                const minfo = getSimMaterialInfo(simLevelCurrent);
-                if (minfo) {
-                    protectQty = minfo.base + minfo.enriched + minfo.hd + minfo.uhd;
-                }
-                
-                if (protectType && protectQty > 0) {
-                    if (!simBlessedStones[protectType]) simBlessedStones[protectType] = { qty: 0, cost: 0 };
-                    const protectPrice = getSimProtectionStonePrice(protectType, blessedMaterial);
-                    simBlessedStones[protectType].qty += protectQty;
-                    simBlessedStones[protectType].cost += protectQty * protectPrice;
-                    simTotal += protectQty * protectPrice;
-                }
-                
-                // Additional Blessed Stones if checkbox is checked
-                if (blessedChecked && simLevelCurrent >= 5) {
-                    blessedStoneType = getSimBlessedStoneType(simLevelCurrent, blessedMaterial);
-                    if (blessedStoneType) {
-                        let qty = getSimBlessedStoneAmount();
-                        if (!simBlessedStones[blessedStoneType]) simBlessedStones[blessedStoneType] = { qty: 0, cost: 0 };
-                        simBlessedStones[blessedStoneType].qty += qty;
-                        simBlessedStones[blessedStoneType].cost += qty * getSimBlessedStonePrice(blessedStoneType, blessedMaterial);
-                        simTotal += qty * getSimBlessedStonePrice(blessedStoneType, blessedMaterial);
-                        simBlessed++;
+                // Safe refining - use Protection Stones only for levels >= 4
+                if (simLevelCurrent >= 4) {
+                    // Add Protection Stones for safe refining if level >= 4
+                    const protectType = getSimProtectionStoneType(simLevelCurrent, blessedMaterial);
+                    // Calculate protection stone quantity - same as the base material amount
+                    let protectQty = 0;
+                    const minfo = getSimMaterialInfo(simLevelCurrent);
+                    if (minfo) {
+                        protectQty = minfo.base + minfo.enriched + minfo.hd + minfo.uhd;
                     }
-                }
-                
-                if (rand < rates.success) {
-                    outcome = 'success';
-                    simSuccess++;
-                    simLevelCurrent++;
-                } else if (rand < rates.success + rates.fail) {
-                    outcome = 'fail';
-                    simFail++;
-                } else if (rates.break && rand < rates.success + rates.fail + rates.break) {
-                    wouldBreak = true;
-                    if (blessedChecked) {
+                    
+                    if (protectType && protectQty > 0) {
+                        if (!simBlessedStones[protectType]) simBlessedStones[protectType] = { qty: 0, cost: 0 };
+                        const protectPrice = getSimProtectionStonePrice(protectType, blessedMaterial);
+                        simBlessedStones[protectType].qty += protectQty;
+                        simBlessedStones[protectType].cost += protectQty * protectPrice;
+                        simTotal += protectQty * protectPrice;
+                    }
+                    
+                    // Additional Blessed Stones if checkbox is checked
+                    if (blessedChecked && simLevelCurrent >= 5) {
                         blessedStoneType = getSimBlessedStoneType(simLevelCurrent, blessedMaterial);
                         if (blessedStoneType) {
-                            // Save item with blessed stone
                             let qty = getSimBlessedStoneAmount();
                             if (!simBlessedStones[blessedStoneType]) simBlessedStones[blessedStoneType] = { qty: 0, cost: 0 };
                             simBlessedStones[blessedStoneType].qty += qty;
                             simBlessedStones[blessedStoneType].cost += qty * getSimBlessedStonePrice(blessedStoneType, blessedMaterial);
                             simTotal += qty * getSimBlessedStonePrice(blessedStoneType, blessedMaterial);
                             simBlessed++;
-                            outcome = 'saved';
+                        }
+                    }
+                }
+                
+                // For levels < 4, use the same rates as regular refining
+                if (simLevelCurrent < 4) {
+                    // For levels 0-3, use regular refining logic with same outcomes
+                    if (rand < rates.success) {
+                        outcome = 'success';
+                        simSuccess++;
+                        simLevelCurrent++;
+                    } else if (rand < rates.success + rates.fail) {
+                        outcome = 'fail';
+                        simFail++;
+                    } else if (rates.downgrade && rand < rates.success + rates.fail + rates.downgrade) {
+                        outcome = 'downgrade';
+                        simDowngrade++;
+                        simLevelCurrent = Math.max(0, simLevelCurrent - 1);
+                    } else if (rates.break && rand < rates.success + rates.fail + (rates.downgrade || 0) + rates.break) {
+                        wouldBreak = true;
+                        if (blessedChecked) {
+                            blessedStoneType = getSimBlessedStoneType(simLevelCurrent, blessedMaterial);
+                            if (blessedStoneType) {
+                                // Save item with blessed stone
+                                let qty = getSimBlessedStoneAmount();
+                                if (!simBlessedStones[blessedStoneType]) simBlessedStones[blessedStoneType] = { qty: 0, cost: 0 };
+                                simBlessedStones[blessedStoneType].qty += qty;
+                                simBlessedStones[blessedStoneType].cost += qty * getSimBlessedStonePrice(blessedStoneType, blessedMaterial);
+                                simTotal += qty * getSimBlessedStonePrice(blessedStoneType, blessedMaterial);
+                                simBlessed++;
+                                outcome = 'saved';
+                            } else {
+                                outcome = 'break';
+                                simBreak++;
+                            }
                         } else {
                             outcome = 'break';
                             simBreak++;
                         }
-                    } else {
-                        outcome = 'break';
-                        simBreak++;
+                    }
+                } else {
+                    // For levels 4+, use safe refining with protection stones
+                    if (rand < rates.success) {
+                        outcome = 'success';
+                        simSuccess++;
+                        simLevelCurrent++;
+                    } else if (rand < rates.success + rates.fail) {
+                        outcome = 'fail';
+                        simFail++;
+                    } else if (rates.break && rand < rates.success + rates.fail + rates.break) {
+                        wouldBreak = true;
+                        if (blessedChecked) {
+                            blessedStoneType = getSimBlessedStoneType(simLevelCurrent, blessedMaterial);
+                            if (blessedStoneType) {
+                                // Save item with blessed stone
+                                let qty = getSimBlessedStoneAmount();
+                                if (!simBlessedStones[blessedStoneType]) simBlessedStones[blessedStoneType] = { qty: 0, cost: 0 };
+                                simBlessedStones[blessedStoneType].qty += qty;
+                                simBlessedStones[blessedStoneType].cost += qty * getSimBlessedStonePrice(blessedStoneType, blessedMaterial);
+                                simTotal += qty * getSimBlessedStonePrice(blessedStoneType, blessedMaterial);
+                                simBlessed++;
+                                outcome = 'saved';
+                            } else {
+                                outcome = 'break';
+                                simBreak++;
+                            }
+                        } else {
+                            outcome = 'break';
+                            simBreak++;
+                        }
                     }
                 }
             }
@@ -596,11 +652,23 @@ rangeSimBtn.addEventListener('click', function() {
 
 // Functions
 function getRates() {
-    if (selectedRefineType === 'regular') {
-        return REGULAR_REFINEMENT[currentRefineLevel] || { success: 0, fail: 0, downgrade: 0, break: 0 };
+    // Get rates from tables
+    const level = currentRefineLevel;
+    const refineType = selectedRefineType;
+    let rates;
+    
+    if (refineType === 'regular') {
+        rates = REGULAR_REFINEMENT[level];
     } else {
-        return SAFE_REFINEMENT[currentRefineLevel] || { success: 0, fail: 0, break: 0 };
+        // For levels 0-3, safe refining follows regular refining rules
+        if (level < 4) {
+            rates = REGULAR_REFINEMENT[level];
+        } else {
+            rates = SAFE_REFINEMENT[level];
+        }
     }
+    
+    return rates || { success: 0, fail: 0, downgrade: 0, break: 0 };
 }
 
 function getMaterialInfo() {
@@ -707,21 +775,25 @@ function updateRefineChance() {
     selectedEquipmentType = equipmentTypeSelect.value;
     selectedEquipmentLevel = equipmentLevelSelect.value;
     selectedRefineType = document.querySelector('input[name="refine-type"]:checked').value;
-
-    // Safe Refine erst ab Level 4 aktivierbar
-    if (currentRefineLevel < 4) {
-        safeRefineRadio.disabled = true;
-        regularRefineRadio.checked = true;
-    } else {
-        safeRefineRadio.disabled = false;
+    
+    // CRITICAL: Safe Refine is ALWAYS enabled - no exceptions!
+    safeRefineRadio.disabled = false;
+    safeRefineRadio.removeAttribute('disabled');
+    
+    // Also ensure the label is fully interactive
+    const safeRefineLabel = safeRefineRadio.closest('label');
+    if (safeRefineLabel) {
+        safeRefineLabel.style.pointerEvents = 'auto';
+        safeRefineLabel.style.opacity = '1';
+        safeRefineLabel.style.cursor = 'pointer';
     }
-
+    
     const rates = getRates();
     successRateSpan.textContent = rates.success + '%';
     failRateSpan.textContent = (rates.fail || 0) + '%';
     downgradeRateSpan.textContent = (rates.downgrade || 0) + '%';
     breakRateSpan.textContent = (rates.break || 0) + '%';
-
+    
     // Show/hide boxes
     failRateBox.style.display = rates.fail ? '' : 'none';
     downgradeRateBox.style.display = rates.downgrade > 0 ? '' : 'none';
@@ -739,6 +811,9 @@ function updateRefineChance() {
     document.querySelector('.history-section').classList.toggle('active', allSelected);
 
     updateMaterialCostInfo();
+    
+    // Call again to ensure the changes stick
+    setTimeout(ensureSafeRefineEnabled, 0);
 }
 
 function showNotification(message) {
@@ -866,60 +941,97 @@ function attemptRefine() {
                 }
             }
         } else if (selectedRefineType === 'safe') {
-            // Always add Protection Stones for safe refining if level >= 4
-            const protectType = getProtectionStoneType(currentRefineLevel, blessedMaterial);
-            // Calculate protection stone quantity - same as the base material amount
-            let protectQty = 0;
-            if (info) {
-                protectQty = info.base + info.enriched + info.hd + info.uhd;
-            }
-            
-            if (protectType && protectQty > 0) {
-                if (!sessionMaterials[protectType]) sessionMaterials[protectType] = { qty: 0, cost: 0 };
-                const protectPrice = getProtectionStonePrice(protectType, blessedMaterial);
-                sessionMaterials[protectType].qty += protectQty;
-                sessionMaterials[protectType].cost += protectQty * protectPrice;
-                sessionTotal += protectQty * protectPrice;
-            }
-            
-            // Additional Blessed Stones if checkbox is checked
-            if (blessedChecked && currentRefineLevel >= 5) {
-                blessedStoneType = getBlessedStoneType(currentRefineLevel, blessedMaterial);
-                // Double Blessed Stones
-                const blessedQty = getBlessedStoneAmount() * 2;
-                if (blessedStoneType) {
-                    if (!sessionMaterials[blessedStoneType]) sessionMaterials[blessedStoneType] = { qty: 0, cost: 0 };
-                    const blessedPrice = getBlessedStonePrice(blessedStoneType, blessedMaterial);
-                    sessionMaterials[blessedStoneType].qty += blessedQty;
-                    sessionMaterials[blessedStoneType].cost += blessedQty * blessedPrice;
-                    sessionTotal += blessedQty * blessedPrice;
-                }
-            }
-            
-            if (rand < rates.success) {
-                result = 'Success';
-                colorClass = 'success';
-                nextLevel++;
-            } else if (rand < rates.success + rates.fail) {
-                result = 'Fail';
-                colorClass = 'fail';
-            } else if (rates.break && rand < rates.success + rates.fail + rates.break) {
-                wouldBreak = true;
-                if (blessedChecked) {
-                    blessedStoneType = getBlessedStoneType(currentRefineLevel, blessedMaterial);
-                    if (blessedStoneType) {
-                        result = 'Saved by Blessed & Protection Stone';
-                        colorClass = 'blessed';
-                        blessedStoneUsed = true;
+            // For levels 0-3, safe refining follows regular refining rules
+            if (currentRefineLevel < 4) {
+                // Same logic as regular refining for levels 0-3
+                if (rand < rates.success) {
+                    result = 'Success';
+                    colorClass = 'success';
+                    nextLevel++;
+                } else if (rand < rates.success + rates.fail) {
+                    result = 'Fail';
+                    colorClass = 'fail';
+                } else if (rates.downgrade && rand < rates.success + rates.fail + rates.downgrade) {
+                    result = 'Downgrade';
+                    colorClass = 'downgrade';
+                    nextLevel = Math.max(0, currentRefineLevel - 1);
+                } else if (rates.break && rand < rates.success + rates.fail + (rates.downgrade || 0) + rates.break) {
+                    wouldBreak = true;
+                    if (blessedChecked) {
+                        blessedStoneType = getBlessedStoneType(currentRefineLevel, blessedMaterial);
+                        if (blessedStoneType) {
+                            addBlessedStoneToSession(blessedStoneType, blessedMaterial);
+                            result = 'Saved by Blessed Stone';
+                            colorClass = 'blessed';
+                            blessedStoneUsed = true;
+                        } else {
+                            result = 'Break';
+                            colorClass = 'break';
+                            broke = true;
+                        }
                     } else {
                         result = 'Break';
                         colorClass = 'break';
                         broke = true;
                     }
-                } else {
-                    result = 'Break';
-                    colorClass = 'break';
-                    broke = true;
+                }
+            } else {
+                // Safe refining with Protection Stones for levels 4+
+                // Always add Protection Stones for safe refining if level >= 4
+                const protectType = getProtectionStoneType(currentRefineLevel, blessedMaterial);
+                // Calculate protection stone quantity - same as the base material amount
+                let protectQty = 0;
+                if (info) {
+                    protectQty = info.base + info.enriched + info.hd + info.uhd;
+                }
+                
+                if (protectType && protectQty > 0) {
+                    if (!sessionMaterials[protectType]) sessionMaterials[protectType] = { qty: 0, cost: 0 };
+                    const protectPrice = getProtectionStonePrice(protectType, blessedMaterial);
+                    sessionMaterials[protectType].qty += protectQty;
+                    sessionMaterials[protectType].cost += protectQty * protectPrice;
+                    sessionTotal += protectQty * protectPrice;
+                }
+                
+                // Additional Blessed Stones if checkbox is checked
+                if (blessedChecked && currentRefineLevel >= 5) {
+                    blessedStoneType = getBlessedStoneType(currentRefineLevel, blessedMaterial);
+                    // Double Blessed Stones
+                    const blessedQty = getBlessedStoneAmount() * 2;
+                    if (blessedStoneType) {
+                        if (!sessionMaterials[blessedStoneType]) sessionMaterials[blessedStoneType] = { qty: 0, cost: 0 };
+                        const blessedPrice = getBlessedStonePrice(blessedStoneType, blessedMaterial);
+                        sessionMaterials[blessedStoneType].qty += blessedQty;
+                        sessionMaterials[blessedStoneType].cost += blessedQty * blessedPrice;
+                        sessionTotal += blessedQty * blessedPrice;
+                    }
+                }
+                
+                if (rand < rates.success) {
+                    result = 'Success';
+                    colorClass = 'success';
+                    nextLevel++;
+                } else if (rand < rates.success + rates.fail) {
+                    result = 'Fail';
+                    colorClass = 'fail';
+                } else if (rates.break && rand < rates.success + rates.fail + rates.break) {
+                    wouldBreak = true;
+                    if (blessedChecked) {
+                        blessedStoneType = getBlessedStoneType(currentRefineLevel, blessedMaterial);
+                        if (blessedStoneType) {
+                            result = 'Saved by Blessed & Protection Stone';
+                            colorClass = 'blessed';
+                            blessedStoneUsed = true;
+                        } else {
+                            result = 'Break';
+                            colorClass = 'break';
+                            broke = true;
+                        }
+                    } else {
+                        result = 'Break';
+                        colorClass = 'break';
+                        broke = true;
+                    }
                 }
             }
         }
@@ -1292,10 +1404,64 @@ document.addEventListener('DOMContentLoaded', function() {
     applyTheme(savedTheme);
 });
 
-// Attach to all relevant events
-equipmentTypeSelect.addEventListener('change', updateDropdownStates);
-weaponTypeSelect.addEventListener('change', updateDropdownStates);
-raritySelect.addEventListener('change', updateDropdownStates);
+// Improved Safe Refine Button Handler 
+function ensureSafeRefineEnabled() {
+    if (!safeRefineRadio) return;
+    
+    // Force enable the radio button
+    safeRefineRadio.disabled = false;
+    safeRefineRadio.removeAttribute('disabled');
+    
+    // Ensure styles are applied
+    safeRefineRadio.style.pointerEvents = 'auto';
+    safeRefineRadio.style.opacity = '1';
+    safeRefineRadio.style.cursor = 'pointer';
+    
+    // Also ensure the label is enabled
+    const safeRefineLabel = safeRefineRadio.closest('label');
+    if (safeRefineLabel) {
+        safeRefineLabel.style.pointerEvents = 'auto';
+        safeRefineLabel.style.opacity = '1';
+        safeRefineLabel.style.cursor = 'pointer';
+        safeRefineLabel.style.filter = 'none';
+    }
+    
+    // Use MutationObserver to detect any attempts to disable the button
+    if (!safeRefineRadio._observerAttached) {
+        const observer = new MutationObserver(function(mutations) {
+            mutations.forEach(function(mutation) {
+                if (mutation.attributeName === 'disabled' && 
+                    (safeRefineRadio.disabled || safeRefineRadio.hasAttribute('disabled'))) {
+                    safeRefineRadio.disabled = false;
+                    safeRefineRadio.removeAttribute('disabled');
+                }
+            });
+        });
+        
+        observer.observe(safeRefineRadio, { attributes: true });
+        safeRefineRadio._observerAttached = true;
+    }
+}
+
+// Ensure the function runs at important points in the UI lifecycle
+document.addEventListener('DOMContentLoaded', function() {
+    ensureSafeRefineEnabled();
+    
+    // Run again after a short delay to catch any late DOM modifications
+    setTimeout(ensureSafeRefineEnabled, 100);
+    setTimeout(ensureSafeRefineEnabled, 500);
+    setTimeout(ensureSafeRefineEnabled, 1000);
+});
+
+// Also run on every UI interaction
+equipmentTypeSelect.addEventListener('change', ensureSafeRefineEnabled);
+equipmentLevelSelect.addEventListener('change', ensureSafeRefineEnabled);
+weaponTypeSelect.addEventListener('change', ensureSafeRefineEnabled);
+raritySelect.addEventListener('change', ensureSafeRefineEnabled);
+window.addEventListener('click', ensureSafeRefineEnabled);
+
+// Run periodically to catch any other issues
+setInterval(ensureSafeRefineEnabled, 1000);
 
 // Call once on init to set initial image if applicable
 deferInit();
