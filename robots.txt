@@ -5,4 +5,6 @@ User-agent: Mediapartners-Google
 Allow: /
 
 User-agent: Adsbot-Google
-Allow: / 
+Allow: /
+
+Sitemap: https://roxmanager.com/sitemap.xml 
