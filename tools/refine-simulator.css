@@ -261,8 +261,8 @@ body {
     gap: 0.5rem;
     margin-top: 1rem;
     margin-bottom: 1.5rem;
-    max-height: 80vh;
-    overflow-y: auto;
+    max-height: none;
+    overflow-y: visible;
 }
 .price-grid label {
     display: flex;
@@ -312,7 +312,7 @@ body {
     }
     
     .price-grid {
-        max-height: 60vh;
+        max-height: none;
         gap: 0.3rem;
     }
 }
