@@ -291,23 +291,49 @@ rangeSimBtn.addEventListener('click', function() {
             }
             let typeMult = 1;
             if (selectedEquipmentType === 'weapon') {
-                if (selectedWeaponType === 'one-handed') typeMult = 0.5;
+                if (selectedWeaponType === 'one-handed') typeMult = 2/3;
                 else if (selectedWeaponType === 'dagger') typeMult = 2/3;
                 else if (selectedWeaponType === 'shield') typeMult = 1/3;
             }
+            
+            // Apply material tiers logic to all equipment types
             if (selectedEquipmentType === 'armor' || selectedEquipmentType === 'accessory') {
-                if (selectedRarity === 'gold' || selectedRarity === 'purple') base = 8;
-                else if (selectedRarity === 'blue') base = 4;
-                else if (selectedRarity === 'white') base = 2;
-                enriched = hd = uhd = 0;
-                rarityMult = 1;
-                typeMult = 1;
+                if (selectedRarity === 'gold' || selectedRarity === 'purple') {
+                    if (level >= 0 && level < 2) base = 8;
+                    else if (level >= 2 && level < 4) base = 16;
+                    else if (level >= 4 && level < 6) enriched = 8;
+                    else if (level >= 6 && level < 8) enriched = 16;
+                    else if (level >= 8 && level < 10) hd = 8;
+                    else if (level >= 10 && level < 12) hd = 16;
+                    else if (level >= 12 && level < 14) uhd = 8;
+                    else if (level >= 14 && level < 15) uhd = 16;
+                } else if (selectedRarity === 'blue') {
+                    if (level >= 0 && level < 2) base = 4;
+                    else if (level >= 2 && level < 4) base = 8;
+                    else if (level >= 4 && level < 6) enriched = 4;
+                    else if (level >= 6 && level < 8) enriched = 8;
+                    else if (level >= 8 && level < 10) hd = 4;
+                    else if (level >= 10 && level < 12) hd = 8;
+                    else if (level >= 12 && level < 14) uhd = 4;
+                    else if (level >= 14 && level < 15) uhd = 8;
+                } else if (selectedRarity === 'white') {
+                    if (level >= 0 && level < 2) base = 2;
+                    else if (level >= 2 && level < 4) base = 4;
+                    else if (level >= 4 && level < 6) enriched = 2;
+                    else if (level >= 6 && level < 8) enriched = 4;
+                    else if (level >= 8 && level < 10) hd = 2;
+                    else if (level >= 10 && level < 12) hd = 4;
+                    else if (level >= 12 && level < 14) uhd = 2;
+                    else if (level >= 14 && level < 15) uhd = 4;
+                }
             } else {
+                // For weapons, apply multipliers
                 base = Math.ceil(base * typeMult * rarityMult);
                 enriched = Math.ceil(enriched * typeMult * rarityMult);
                 hd = Math.ceil(hd * typeMult * rarityMult);
                 uhd = Math.ceil(uhd * typeMult * rarityMult);
             }
+            
             const priceBase = Number(document.getElementById('price-' + material.toLowerCase()).value) || 0;
             const priceEnriched = Number(document.getElementById('price-enriched-' + material.toLowerCase()).value) || 0;
             const priceHD = Number(document.getElementById('price-hd-' + material.toLowerCase()).value) || 0;
@@ -399,12 +425,14 @@ rangeSimBtn.addEventListener('click', function() {
                     if (blessedChecked) {
                         blessedStoneType = getSimBlessedStoneType(simLevelCurrent, blessedMaterial);
                         if (blessedStoneType) {
+                            // Save item with blessed stone
                             let qty = getSimBlessedStoneAmount();
                             if (!simBlessedStones[blessedStoneType]) simBlessedStones[blessedStoneType] = { qty: 0, cost: 0 };
                             simBlessedStones[blessedStoneType].qty += qty;
                             simBlessedStones[blessedStoneType].cost += qty * getSimBlessedStonePrice(blessedStoneType, blessedMaterial);
                             simTotal += qty * getSimBlessedStonePrice(blessedStoneType, blessedMaterial);
                             simBlessed++;
+                            outcome = 'saved';
                         } else {
                             outcome = 'break';
                             simBreak++;
@@ -457,18 +485,21 @@ rangeSimBtn.addEventListener('click', function() {
                     if (blessedChecked) {
                         blessedStoneType = getSimBlessedStoneType(simLevelCurrent, blessedMaterial);
                         if (blessedStoneType) {
-                            result = 'Saved by Blessed & Protection Stone';
-                            colorClass = 'blessed';
-                            blessedStoneUsed = true;
+                            // Save item with blessed stone
+                            let qty = getSimBlessedStoneAmount();
+                            if (!simBlessedStones[blessedStoneType]) simBlessedStones[blessedStoneType] = { qty: 0, cost: 0 };
+                            simBlessedStones[blessedStoneType].qty += qty;
+                            simBlessedStones[blessedStoneType].cost += qty * getSimBlessedStonePrice(blessedStoneType, blessedMaterial);
+                            simTotal += qty * getSimBlessedStonePrice(blessedStoneType, blessedMaterial);
+                            simBlessed++;
+                            outcome = 'saved';
                         } else {
-                            result = 'Break';
-                            colorClass = 'break';
-                            broke = true;
+                            outcome = 'break';
+                            simBreak++;
                         }
                     } else {
-                        result = 'Break';
-                        colorClass = 'break';
-                        broke = true;
+                        outcome = 'break';
+                        simBreak++;
                     }
                 }
             }
@@ -605,14 +636,37 @@ function getMaterialInfo() {
         else if (selectedWeaponType === 'dagger') typeMult = 2/3;
         else if (selectedWeaponType === 'shield') typeMult = 1/3;
     }
-    // Armor/Accessory: always 1/3 of 2H weapon base, with fixed values for rarity
+    
+    // Apply material tiers logic to all equipment types
     if (selectedEquipmentType === 'armor' || selectedEquipmentType === 'accessory') {
-        if (selectedRarity === 'gold' || selectedRarity === 'purple') base = 8;
-        else if (selectedRarity === 'blue') base = 4;
-        else if (selectedRarity === 'white') base = 2;
-        enriched = hd = uhd = 0; // Only base material for armor/accessory
-        rarityMult = 1; // already handled above
-        typeMult = 1; // no further multiplier
+        if (selectedRarity === 'gold' || selectedRarity === 'purple') {
+            if (lvl >= 0 && lvl < 2) base = 8;
+            else if (lvl >= 2 && lvl < 4) base = 16;
+            else if (lvl >= 4 && lvl < 6) enriched = 8;
+            else if (lvl >= 6 && lvl < 8) enriched = 16;
+            else if (lvl >= 8 && lvl < 10) hd = 8;
+            else if (lvl >= 10 && lvl < 12) hd = 16;
+            else if (lvl >= 12 && lvl < 14) uhd = 8;
+            else if (lvl >= 14 && lvl < 15) uhd = 16;
+        } else if (selectedRarity === 'blue') {
+            if (lvl >= 0 && lvl < 2) base = 4;
+            else if (lvl >= 2 && lvl < 4) base = 8;
+            else if (lvl >= 4 && lvl < 6) enriched = 4;
+            else if (lvl >= 6 && lvl < 8) enriched = 8;
+            else if (lvl >= 8 && lvl < 10) hd = 4;
+            else if (lvl >= 10 && lvl < 12) hd = 8;
+            else if (lvl >= 12 && lvl < 14) uhd = 4;
+            else if (lvl >= 14 && lvl < 15) uhd = 8;
+        } else if (selectedRarity === 'white') {
+            if (lvl >= 0 && lvl < 2) base = 2;
+            else if (lvl >= 2 && lvl < 4) base = 4;
+            else if (lvl >= 4 && lvl < 6) enriched = 2;
+            else if (lvl >= 6 && lvl < 8) enriched = 4;
+            else if (lvl >= 8 && lvl < 10) hd = 2;
+            else if (lvl >= 10 && lvl < 12) hd = 4;
+            else if (lvl >= 12 && lvl < 14) uhd = 2;
+            else if (lvl >= 14 && lvl < 15) uhd = 4;
+        }
     } else {
         // For weapons, apply multipliers
         base = Math.ceil(base * typeMult * rarityMult);
@@ -620,6 +674,7 @@ function getMaterialInfo() {
         hd = Math.ceil(hd * typeMult * rarityMult);
         uhd = Math.ceil(uhd * typeMult * rarityMult);
     }
+    
     // Get prices
     const priceBase = Number(document.getElementById('price-' + material.toLowerCase()).value) || 0;
     const priceEnriched = Number(document.getElementById('price-enriched-' + material.toLowerCase()).value) || 0;
@@ -851,7 +906,7 @@ function attemptRefine() {
             } else if (rates.break && rand < rates.success + rates.fail + rates.break) {
                 wouldBreak = true;
                 if (blessedChecked) {
-                    blessedStoneType = getSimBlessedStoneType(currentRefineLevel, blessedMaterial);
+                    blessedStoneType = getBlessedStoneType(currentRefineLevel, blessedMaterial);
                     if (blessedStoneType) {
                         result = 'Saved by Blessed & Protection Stone';
                         colorClass = 'blessed';
