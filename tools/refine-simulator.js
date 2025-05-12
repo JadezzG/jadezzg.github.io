@@ -166,11 +166,20 @@ const togglePriceIcon = document.getElementById('toggle-price-icon');
 togglePriceBtn.addEventListener('click', function() {
     const expanded = togglePriceBtn.getAttribute('aria-expanded') === 'true';
     if (expanded) {
-        priceSectionContent.style.display = 'none';
+        // Erst Höhe auf 0 setzen, dann nach kurzer Verzögerung ausblenden
+        priceSectionContent.style.maxHeight = '0';
+        setTimeout(() => {
+            priceSectionContent.style.display = 'none';
+        }, 300);
         togglePriceBtn.setAttribute('aria-expanded', 'false');
         togglePriceIcon.textContent = '▶';
     } else {
+        // Erst einblenden, dann nach kurzer Verzögerung die Höhe setzen
         priceSectionContent.style.display = '';
+        setTimeout(() => {
+            // Setze große max-height für Animation
+            priceSectionContent.style.maxHeight = '4000px';
+        }, 10);
         togglePriceBtn.setAttribute('aria-expanded', 'true');
         togglePriceIcon.textContent = '▼';
     }
