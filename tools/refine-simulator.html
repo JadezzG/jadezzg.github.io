@@ -221,8 +221,16 @@
                             </select>
                         </div>
                         <div class="refine-type-selector">
-                            <label><img src="img/oridecon.png" alt="Oridecon Icon" class="mat-icon"><input type="radio" name="refine-type" value="regular" checked id="regular-refine-radio"> Regular</label>
-                            <label><img src="img/weaponprotectionstone1.png" alt="Weapon Protection Stone Icon" class="mat-icon"><input type="radio" name="refine-type" value="safe" id="safe-refine-radio"> Safe</label>
+                            <label>
+                                <img src="img/oridecon.png" alt="Oridecon Icon" class="mat-icon">
+                                <span>Regular</span>
+                                <input type="radio" name="refine-type" value="regular" checked id="regular-refine-radio">
+                            </label>
+                            <label>
+                                <img src="img/weaponprotectionstone1.png" alt="Weapon Protection Stone Icon" class="mat-icon">
+                                <span>Safe</span>
+                                <input type="radio" name="refine-type" value="safe" id="safe-refine-radio">
+                            </label>
                             
                             <!-- Container für das Waffenbild und den Level-Overlay -->
                             <div class="weapon-display-container">
@@ -234,14 +242,17 @@
                             </div>
 
                             <label class="blessed-checkbox-label-inline">
-                                <img src="img/blessedoridecon1.png" alt="Blessed Stone Icon" class="mat-icon" style="vertical-align:middle; margin-right:4px;"> <input type="checkbox" id="blessed-stone-checkbox"> Use Blessed Stones
+                                <img src="img/blessedoridecon1.png" alt="Blessed Stone Icon" class="mat-icon">
+                                <span>Use Blessed Stones</span>
+                                <input type="checkbox" id="blessed-stone-checkbox">
                             </label>
                         </div>
                     </div>
 
                     <div class="range-toggle-row">
                         <label class="range-toggle-label">
-                            <input type="checkbox" id="range-sim-toggle" disabled> Range Simulator
+                            <span>Range Simulator</span>
+                            <input type="checkbox" id="range-sim-toggle" disabled>
                         </label>
                     </div>
                     <div class="range-simulator-section" id="range-simulator-section" style="display:none;">
