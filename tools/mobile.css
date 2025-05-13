@@ -1,0 +1,193 @@
+/* Mobile-specific optimizations for RoxManager */
+
+/* General mobile adjustments */
+@media (max-width: 768px) {
+    body {
+        overflow-x: hidden;
+    }
+    
+    .page-wrapper {
+        flex-direction: column !important;
+        padding: 0 10px !important;
+    }
+    
+    /* Improve button touch targets */
+    button, 
+    select,
+    .tool-button,
+    .btn,
+    .toggle-btn,
+    input[type="radio"],
+    input[type="checkbox"] {
+        min-height: 44px;
+    }
+    
+    /* Header optimizations */
+    header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 1000;
+        background-color: var(--bg-color);
+        padding: 10px 0;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    
+    /* Better spacing for mobile */
+    .refine-simulator {
+        padding: 70px 10px 20px !important;
+    }
+    
+    /* Make refining controls more accessible */
+    .refine-controls {
+        position: sticky;
+        bottom: 0;
+        background-color: var(--bg-color);
+        padding: 10px 0;
+        margin: 0 -10px;
+        box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+        z-index: 100;
+    }
+    
+    .refine-controls button {
+        height: 54px;
+        font-size: 1.1rem;
+        border-radius: 8px;
+    }
+    
+    /* Optimize dropdowns for touch */
+    select {
+        font-size: 16px !important; /* Prevents iOS zoom on focus */
+        height: 44px;
+    }
+    
+    /* Adjust sidebar content */
+    .left-sidebar,
+    .right-sidebar {
+        width: 100% !important;
+        position: static !important;
+        margin: 1rem 0 !important;
+    }
+    
+    /* Enhance social media containers */
+    .social-container {
+        width: 100%;
+        margin-bottom: 1rem;
+    }
+    
+    /* Fix layout structure for mobile */
+    .simulator-flex-wrapper {
+        width: 100%;
+        padding: 0 !important;
+    }
+    
+    /* Make checkboxes and radio buttons easier to tap */
+    input[type="checkbox"],
+    input[type="radio"] {
+        width: 22px;
+        height: 22px;
+    }
+    
+    /* Better spacing for the theme toggle button */
+    .theme-toggle-floating {
+        top: 70px;
+        right: 15px;
+    }
+    
+    /* Optimize image containers */
+    #weapon-image-box {
+        margin: 0 auto;
+    }
+    
+    /* Footer adjustments */
+    footer {
+        padding: 20px 10px;
+        margin-top: 40px;
+    }
+}
+
+/* Smaller phones */
+@media (max-width: 480px) {
+    .refine-simulator h1 {
+        font-size: 1.3rem;
+    }
+    
+    /* Icon sizes */
+    .mat-icon {
+        width: 36px;
+        height: 36px;
+    }
+    
+    /* Adjust padding further */
+    .container, 
+    .simulator-container {
+        padding: 15px !important;
+    }
+    
+    /* Compact session summary */
+    .session-summary-box {
+        padding: 10px;
+    }
+    
+    /* Smaller price grid */
+    .price-grid {
+        grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)) !important;
+    }
+}
+
+/* Fix rotation issues */
+@media screen and (orientation: landscape) and (max-height: 500px) {
+    .refine-simulator {
+        padding-top: 60px !important;
+    }
+    
+    .equipment-section h2,
+    .refine-section h2,
+    .history-section h2 {
+        font-size: 1.1rem;
+        margin-bottom: 0.5rem;
+    }
+    
+    .equipment-selector {
+        gap: 0.3rem;
+    }
+    
+    .refine-status {
+        grid-template-columns: 1fr 1fr;
+    }
+    
+    /* Compact layout for landscape */
+    .theme-toggle-floating {
+        top: 5px;
+        right: 5px;
+    }
+    
+    /* Hide footer in landscape on small devices */
+    footer {
+        display: none;
+    }
+}
+
+/* iOS fix for input zoom */
+@supports (-webkit-touch-callout: none) {
+    input, select, textarea {
+        font-size: 16px !important;
+    }
+}
+
+/* Dark mode adjustments for mobile */
+[data-theme="dark"] .refine-controls {
+    background-color: var(--bg-color);
+}
+
+[data-theme="dark"] header {
+    background-color: var(--bg-color);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+}
+
+/* Fix any truncated elements */
+.price-grid label {
+    word-break: break-word;
+    hyphens: auto;
+} 

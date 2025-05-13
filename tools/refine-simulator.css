@@ -191,31 +191,44 @@ body {
 }
 
 @media (max-width: 768px) {
+    .refine-simulator {
+        padding: 80px 10px 1rem;
+    }
+    
+    .simulator-container {
+        padding: 1rem;
+    }
+    
     .equipment-selector {
         flex-direction: column;
+        gap: 0.5rem;
     }
-
+    
     .refine-status {
         grid-template-columns: 1fr;
+        gap: 0.8rem;
     }
-
+    
     .refine-controls {
         flex-direction: column;
+        gap: 0.8rem;
     }
-
+    
     .tool-button {
         width: 100%;
+        padding: 1rem;
     }
     
     .price-grid label {
-        font-size: 0.9rem;
+        font-size: 0.85rem;
+        padding: 0.5rem 0.3rem 0.2rem;
     }
     
     .mat-icon {
-        width: 56px;
-        height: 56px;
-        padding: 3px;
-        margin-bottom: 5px;
+        width: 48px;
+        height: 48px;
+        padding: 2px;
+        margin-bottom: 3px;
     }
     
     .price-section h2 {
@@ -226,18 +239,174 @@ body {
         padding: 0.2rem;
         font-size: 0.85rem;
     }
+    
+    .blessed-checkbox-label-inline {
+        padding: 0.1rem 0.3rem;
+        font-size: 0.9rem;
+        margin-left: 0;
+        margin-top: 0.5rem;
+        justify-content: center;
+    }
+    
+    .refine-type-selector {
+        flex-direction: column;
+        gap: 0.8rem;
+        align-items: center;
+    }
+    
+    .weapon-display-container {
+        margin-top: 1rem;
+        order: -1;
+    }
+    
+    #weapon-image-box {
+        width: 120px;
+        height: 120px;
+    }
+    
+    #current-refine-level-right {
+        font-size: 1.7rem;
+    }
+    
+    .toggle-btn {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .range-sim-row {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.8rem;
+    }
+    
+    .range-sim-row label {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+    }
+    
+    .range-sim-row select {
+        width: 50%;
+    }
+    
+    .range-simulator-section {
+        padding: 1rem;
+    }
+    
+    .blessed-checkbox-row {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .blessed-checkbox-label {
+        justify-content: space-between;
+    }
+    
+    .material-cost-info {
+        font-size: 0.95rem;
+        padding: 0.8rem;
+    }
+    
+    /* Fix social containers in mobile view */
+    .social-container {
+        width: 100%;
+    }
+    
+    /* Header for mobile */
+    header nav {
+        padding: 0 1rem;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    header ul {
+        gap: 1rem;
+        margin-top: 0.5rem;
+        justify-content: center;
+    }
+    
+    .logo {
+        width: 100%;
+        justify-content: center;
+        margin-bottom: 0.5rem;
+    }
 }
 
 @media (max-width: 480px) {
     .price-grid {
-        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+        gap: 0.3rem;
+    }
+    
+    .refine-simulator h1 {
+        font-size: 1.4rem;
+    }
+    
+    .simulator-tagline {
+        font-size: 0.9rem;
     }
     
     .mat-icon {
-        width: 48px;
-        height: 48px;
+        width: 40px;
+        height: 40px;
         padding: 2px;
-        margin-bottom: 4px;
+    }
+    
+    #weapon-image-box {
+        width: 100px;
+        height: 100px;
+    }
+    
+    .page-wrapper {
+        padding-top: 50px;
+    }
+    
+    /* Make ads more mobile-friendly */
+    .ad-container {
+        padding: 1rem 0;
+        margin: 1rem auto;
+    }
+    
+    .ad-container:before {
+        font-size: 0.8rem;
+        margin-bottom: 0.5rem;
+    }
+    
+    .ad-container-sidebar {
+        min-height: 100px;
+        padding: 1rem 0.5rem;
+    }
+}
+
+/* Fix the page structure for mobile */
+@media (max-width: 1400px) {
+    .page-wrapper {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+    }
+    
+    .simulator-flex-wrapper {
+        padding: 0 10px;
+    }
+    
+    .left-sidebar, .right-sidebar {
+        position: static;
+        width: 100%;
+        max-width: 100%;
+        order: 1;
+    }
+    
+    main {
+        order: 0;
+        width: 100%;
+        max-width: 800px;
+    }
+    
+    /* Improved mobile social containers */
+    .social-container {
+        max-width: 100%;
     }
 }
 

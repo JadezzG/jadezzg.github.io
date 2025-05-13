@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     
     <!-- Early Safe Button Fix (runs before page load) -->
     <script>
@@ -72,6 +72,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="refine-simulator.css">
     <link rel="stylesheet" href="override.css">
+    <link rel="stylesheet" href="mobile.css">
     <!-- Favicon -->
     <link rel="icon" href="img/profile_pic.png" type="image/png">
     
@@ -125,36 +126,7 @@
     </button>
 
     <div class="page-wrapper">
-        <div class="left-sidebar">
-            <!-- YouTube Channel Container -->
-            <div class="social-container youtube-container">
-                <a href="https://www.youtube.com/@JadezzGaming" target="_blank" rel="noopener">
-                    <div class="social-header">
-                        <img src="img/profile_pic.png" alt="Jadezz" class="social-profile-pic">
-                        <h3>JadezzGaming</h3>
-                    </div>
-                    <div class="social-content">
-                        <p>Check out RoX Next Generation guides and gameplay!</p>
-                        <span class="social-btn">Visit Channel</span>
-                    </div>
-                </a>
-            </div>
-            
-            <!-- Discord Container -->
-            <div class="social-container discord-container">
-                <a href="https://discord.gg/9buNDsK3Nt" target="_blank" rel="noopener">
-                    <div class="social-header">
-                        <img src="img/uni.png" alt="Ragnarok University" class="social-profile-pic">
-                        <h3>Ragnarok University</h3>
-                    </div>
-                    <div class="social-content">
-                        <p>Join our Discord community for tips and discussions!</p>
-                        <span class="social-btn">Join Discord</span>
-                    </div>
-                </a>
-            </div>
-        </div>
-
+        <!-- Main content for mobile first approach -->
         <div class="simulator-flex-wrapper">
             <main>
                 <div class="refine-simulator">
@@ -362,30 +334,62 @@
                     </div>
                 </div>
             </main>
-            <div class="right-sidebar">
-                <div id="session-summary-box" class="session-summary-box">
-                    <h3>Used Materials</h3>
-                    <div style="color:#888;">No materials used yet.</div>
-                </div>
-                
-                <!-- Ad separator with clear labeling -->
-                <div style="margin-top: 30px; border-top: 1px solid var(--border-color); padding-top: 20px;">
-                    <p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 15px; text-transform: uppercase; font-weight: bold; letter-spacing: 1px; text-align: center;">
-                        ADVERTISEMENT
-                    </p>
-                    
-                    <!-- AdSense Ad Container - Sidebar -->
-                    <div class="ad-container ad-container-sidebar">
-                        <ins class="adsbygoogle"
-                             style="display:block"
-                             data-ad-client="ca-pub-5278020554404687"
-                             data-ad-slot="1234567890"
-                             data-ad-format="auto"
-                             data-full-width-responsive="true"></ins>
-                        <script>
-                             (adsbygoogle = window.adsbygoogle || []).push({});
-                        </script>
+        </div>
+        
+        <!-- Sidebars moved below main content for mobile - they'll still appear on sides for desktop due to CSS positioning -->
+        <div class="left-sidebar">
+            <!-- YouTube Channel Container -->
+            <div class="social-container youtube-container">
+                <a href="https://www.youtube.com/@JadezzGaming" target="_blank" rel="noopener">
+                    <div class="social-header">
+                        <img src="img/profile_pic.png" alt="Jadezz" class="social-profile-pic">
+                        <h3>JadezzGaming</h3>
                     </div>
+                    <div class="social-content">
+                        <p>Check out RoX Next Generation guides and gameplay!</p>
+                        <span class="social-btn">Visit Channel</span>
+                    </div>
+                </a>
+            </div>
+            
+            <!-- Discord Container -->
+            <div class="social-container discord-container">
+                <a href="https://discord.gg/9buNDsK3Nt" target="_blank" rel="noopener">
+                    <div class="social-header">
+                        <img src="img/uni.png" alt="Ragnarok University" class="social-profile-pic">
+                        <h3>Ragnarok University</h3>
+                    </div>
+                    <div class="social-content">
+                        <p>Join our Discord community for tips and discussions!</p>
+                        <span class="social-btn">Join Discord</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+        
+        <div class="right-sidebar">
+            <div id="session-summary-box" class="session-summary-box">
+                <h3>Used Materials</h3>
+                <div style="color:#888;">No materials used yet.</div>
+            </div>
+            
+            <!-- Ad separator with clear labeling -->
+            <div style="margin-top: 30px; border-top: 1px solid var(--border-color); padding-top: 20px;">
+                <p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 15px; text-transform: uppercase; font-weight: bold; letter-spacing: 1px; text-align: center;">
+                    ADVERTISEMENT
+                </p>
+                
+                <!-- AdSense Ad Container - Sidebar -->
+                <div class="ad-container ad-container-sidebar">
+                    <ins class="adsbygoogle"
+                         style="display:block"
+                         data-ad-client="ca-pub-5278020554404687"
+                         data-ad-slot="1234567890"
+                         data-ad-format="auto"
+                         data-full-width-responsive="true"></ins>
+                    <script>
+                         (adsbygoogle = window.adsbygoogle || []).push({});
+                    </script>
                 </div>
             </div>
         </div>
