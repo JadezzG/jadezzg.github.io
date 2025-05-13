@@ -113,6 +113,36 @@
             font-size: 0.8rem;
             color: #999;
         }
+        .ad-separator {
+            margin: 40px 0 20px;
+            border-top: 1px solid #eee;
+            padding-top: 20px;
+        }
+        .ad-notice {
+            font-size: 0.9rem;
+            color: #888;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+        .ad-container {
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            padding: 20px 0;
+            margin-top: 20px;
+            position: relative;
+        }
+        .ad-container:before {
+            content: "ADVERTISEMENT";
+            display: block;
+            text-align: center;
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 10px;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
     </style>
 </head>
 <body>
@@ -132,21 +162,27 @@
         
         <a href="tools/refine-simulator.html" class="btn">Open Refine Simulator</a>
         
-        <!-- AdSense Ad Container -->
-        <div style="margin-top: 30px; width: 100%;">
-            <ins class="adsbygoogle"
-                 style="display:block"
-                 data-ad-client="ca-pub-5278020554404687"
-                 data-ad-slot="1234567890"
-                 data-ad-format="auto"
-                 data-full-width-responsive="true"></ins>
-            <script>
-                 (adsbygoogle = window.adsbygoogle || []).push({});
-            </script>
+        <!-- Clear ad separator -->
+        <div class="ad-separator">
+            <p class="ad-notice">ADVERTISEMENT</p>
+            
+            <!-- AdSense Ad Container -->
+            <div class="ad-container">
+                <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-client="ca-pub-5278020554404687"
+                     data-ad-slot="1234567890"
+                     data-ad-format="auto"
+                     data-full-width-responsive="true"></ins>
+                <script>
+                     (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+            </div>
         </div>
         
         <footer>
             <p>RoxManager &copy; 2025. Not affiliated with Gravity Co., Ltd. or Ragnarok X: Next Generation.</p>
+            <p><a href="imprint.html" style="color: #999; text-decoration: underline;">Legal Notice</a></p>
         </footer>
     </div>
 </body>
