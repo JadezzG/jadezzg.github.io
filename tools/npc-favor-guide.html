@@ -1,0 +1,1619 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate, max-age=0">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <meta name="google-adsense-account" content="ca-pub-5278020554404687">
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="RoxManager's NPC Favor Guide for Ragnarok X: Next Generation. Learn about gifting NPCs, their favorite items, and rewards for increasing intimacy levels.">
+    <meta name="keywords" content="Ragnarok X, RoX Next Generation, NPC Favor, NPC Gifts, Intimacy, Enchantment NPCs, Ragnarok Mobile, MMORPG tools">
+    <meta name="author" content="RoxManager">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="NPC Favor Guide - RoxManager">
+    <meta property="og:description" content="Complete guide to NPC favor and gifting in Ragnarok X: Next Generation. Learn about gifts, rewards, and enchantment bonuses.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://roxmanager.com/tools/npc-favor-guide.html">
+    <meta property="og:image" content="https://roxmanager.com/tools/img/profile_pic.png">
+    
+    <title>Ragnarok X NPC Favor Guide - Gifts, Rewards & Bonuses | RoxManager</title>
+    
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="mobile.css">
+    <link rel="stylesheet" href="override.css">
+    <!-- Favicon -->
+    <link rel="icon" href="img/profile_pic.png" type="image/png">
+    
+    <!-- Google AdSense Code -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5278020554404687" crossorigin="anonymous"></script>
+    <script src="../js/clean-url.js"></script>
+    
+    <style>
+        /* Dark mode variables */
+        :root {
+            --bg-color: #ffffff;
+            --text-color: #333333;
+            --text-secondary: #666666;
+            --border-color: #eeeeee;
+            --accent-color: #0071e3;
+            --card-bg: #ffffff;
+            --card-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            --hover-bg: #f0f5ff;
+        }
+        
+        /* Dark theme override */
+        body.dark-theme {
+            --bg-color: #1a1a1a;
+            --text-color: #f5f5f7;
+            --text-secondary: #bbbbbb;
+            --border-color: #333333;
+            --accent-color: #0a84ff;
+            --card-bg: #2c2c2e;
+            --card-shadow: 0 2px 10px rgba(0, 0, 0, 0.25);
+            --hover-bg: #252529;
+            background-color: #1a1a1a;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f5f5f7;
+            color: var(--text-color, #333);
+            margin: 0;
+            padding: 0;
+        }
+        
+        /* Page structure */
+        .page-wrapper {
+            max-width: 100%;
+            overflow-x: hidden;
+            padding-top: 70px; /* Added to fix overlapping with header */
+        }
+        
+        /* Header styling */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        body.dark-theme header {
+            background-color: rgba(42, 42, 46, 0.95);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--text-color);
+        }
+        
+        .logo-image {
+            width: 40px;
+            height: 40px;
+            margin-right: 10px;
+            border-radius: 50%;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        
+        nav ul li {
+            margin-left: 20px;
+        }
+        
+        nav ul li a {
+            color: var(--text-color);
+            text-decoration: none;
+            padding: 8px 12px;
+            border-radius: 20px;
+            transition: background-color 0.2s;
+            font-weight: 500;
+        }
+        
+        nav ul li a:hover {
+            background-color: var(--hover-bg);
+        }
+        
+        /* Page navigation fixed buttons */
+        .page-navigation {
+            position: fixed;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            z-index: 900;
+        }
+        
+        .page-navigation a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: var(--card-bg);
+            color: var(--accent-color);
+            border-radius: 50%;
+            box-shadow: var(--card-shadow);
+            transition: all 0.2s ease;
+        }
+        
+        .page-navigation a:hover {
+            background-color: var(--accent-color);
+            color: white;
+            transform: scale(1.1);
+        }
+        
+        .simulator-flex-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        main {
+            flex: 1;
+            min-width: 0;
+            max-width: 1000px;
+        }
+        
+        /* NPC Favor Guide Specific Styles */
+        .favor-guide-container {
+            background-color: var(--card-bg, white);
+            border-radius: 20px;
+            box-shadow: var(--card-shadow, 0 2px 10px rgba(0,0,0,0.12));
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .guide-title {
+            text-align: center;
+            padding: 15px 0 5px;
+            margin-bottom: 20px;
+        }
+        
+        .guide-title h1 {
+            font-size: 1.6rem;
+            margin-bottom: 8px;
+            color: var(--text-color, #333);
+        }
+        
+        .guide-title p {
+            color: var(--text-secondary, #666);
+            font-size: 1rem;
+            margin-bottom: 5px;
+        }
+        
+        /* Guide navigation */
+        .guide-nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 0 -10px 30px -10px;
+            justify-content: center;
+            padding: 5px 10px;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none; /* Firefox */
+            position: sticky;
+            top: 70px;
+            background-color: var(--bg-color);
+            z-index: 10;
+            border-radius: 15px;
+        }
+        
+        .guide-nav::-webkit-scrollbar {
+            display: none; /* Chrome, Safari, Edge */
+        }
+        
+        .guide-nav a {
+            display: inline-block;
+            padding: 10px 18px;
+            background-color: var(--hover-bg, #f0f5ff);
+            border-radius: 25px;
+            color: var(--accent-color, #0071e3);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.2s ease;
+            font-size: 0.95rem;
+            white-space: nowrap;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+        
+        .guide-nav a:hover {
+            background-color: var(--accent-color, #0071e3);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 113, 227, 0.2);
+        }
+        
+        .guide-nav a.active {
+            background-color: var(--accent-color, #0071e3);
+            color: white;
+            box-shadow: 0 4px 8px rgba(0, 113, 227, 0.2);
+        }
+        
+        /* Guide intro styling */
+        .guide-intro {
+            background-color: var(--hover-bg, #f5f7fa);
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            border-left: 5px solid var(--accent-color, #0071e3);
+        }
+        
+        /* Sidebar Styles */
+        .left-sidebar, .right-sidebar {
+            width: 240px;
+            padding: 20px 0;
+            display: none;
+        }
+        
+        .info-box {
+            background-color: var(--card-bg, white);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: var(--card-shadow, 0 2px 10px rgba(0,0,0,0.1));
+        }
+        
+        .info-box h3 {
+            color: var(--accent-color, #0071e3);
+            margin-top: 0;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+        
+        .info-box ul {
+            padding-left: 20px;
+            margin: 0;
+        }
+        
+        .info-box li {
+            margin-bottom: 8px;
+            color: var(--text-secondary, #666);
+            font-size: 0.9rem;
+        }
+        
+        /* Social Containers */
+        .social-container {
+            background-color: var(--card-bg, white);
+            border-radius: 15px;
+            overflow: hidden;
+            margin-bottom: 20px;
+            box-shadow: var(--card-shadow, 0 2px 10px rgba(0,0,0,0.1));
+            transition: transform 0.2s ease;
+        }
+        
+        .social-container:hover {
+            transform: translateY(-3px);
+        }
+        
+        .social-container a {
+            text-decoration: none;
+            color: var(--text-color, #333);
+            display: block;
+        }
+        
+        .social-header {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            border-bottom: 1px solid var(--border-color, #eee);
+        }
+        
+        .social-profile-pic {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 10px;
+            object-fit: cover;
+        }
+        
+        .social-header h3 {
+            margin: 0;
+            font-size: 1rem;
+        }
+        
+        .social-content {
+            padding: 15px;
+        }
+        
+        .social-content p {
+            margin: 0 0 15px;
+            font-size: 0.9rem;
+            color: var(--text-secondary, #666);
+        }
+        
+        .social-btn {
+            display: inline-block;
+            padding: 8px 15px;
+            background-color: var(--accent-color, #0071e3);
+            color: white;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: background-color 0.2s ease;
+        }
+        
+        .social-btn:hover {
+            background-color: #0062c3;
+        }
+        
+        .youtube-container .social-header {
+            background-color: rgba(255, 0, 0, 0.05);
+        }
+        
+        .discord-container .social-header {
+            background-color: rgba(114, 137, 218, 0.05);
+        }
+        
+        /* Theme toggle button */
+        .dark-theme .theme-toggle-floating .fa-moon {
+            display: none;
+        }
+        
+        .dark-theme .theme-toggle-floating .fa-sun {
+            display: inline-block;
+        }
+        
+        .theme-toggle-floating .fa-sun {
+            display: none;
+        }
+        
+        .theme-toggle-floating {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--accent-color, #0071e3);
+            color: white;
+            border: none;
+            box-shadow: var(--card-shadow, 0 2px 10px rgba(0,0,0,0.2));
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            z-index: 1000;
+            transition: transform 0.2s ease;
+        }
+        
+        .theme-toggle-floating:hover {
+            transform: scale(1.1);
+        }
+
+        /* Page navigation responsive styling */
+        @media (max-width: 1024px) {
+            .page-navigation {
+                left: auto;
+                top: auto;
+                bottom: 20px;
+                right: 70px; /* Leave space for theme toggle */
+                flex-direction: row;
+                transform: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .page-navigation {
+                display: none; /* Hide on very small screens */
+            }
+        }
+
+        /* Responsive design */
+        @media (min-width: 1200px) {
+            .left-sidebar, .right-sidebar {
+                display: block;
+            }
+            
+            .left-sidebar {
+                margin-right: 20px;
+            }
+            
+            .right-sidebar {
+                margin-left: 20px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .favor-guide-container {
+                padding: 15px;
+            }
+            
+            .guide-title h1 {
+                font-size: 1.4rem;
+            }
+            
+            .simulator-flex-wrapper {
+                flex-direction: column;
+            }
+            
+            .left-sidebar, .right-sidebar {
+                width: 100%;
+                display: block;
+                padding: 0;
+                margin-bottom: 20px;
+            }
+            
+            .social-container, .info-box {
+                max-width: 400px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+        }
+        
+        /* Guide section styling */
+        .guide-section {
+            margin-bottom: 40px;
+            padding: 10px 0;
+            scroll-margin-top: 100px; /* For smooth scrolling with fixed header */
+        }
+        
+        .guide-section h2 {
+            font-size: 1.5rem;
+            color: var(--text-color);
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .guide-section h3 {
+            font-size: 1.2rem;
+            color: var(--text-color);
+            margin: 25px 0 15px;
+        }
+        
+        .guide-section p {
+            margin-bottom: 15px;
+            line-height: 1.6;
+            color: var(--text-secondary);
+        }
+        
+        /* City section styling */
+        .city-section {
+            background-color: var(--card-bg);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 25px;
+            box-shadow: var(--card-shadow);
+        }
+        
+        .city-title {
+            margin-bottom: 15px;
+        }
+        
+        .city-title h3 {
+            margin-top: 0;
+            color: var(--accent-color);
+            font-size: 1.2rem;
+        }
+        
+        /* Table styling */
+        .npc-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            margin: 15px 0;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .npc-table th {
+            background-color: var(--accent-color);
+            color: white;
+            font-weight: 600;
+            text-align: left;
+            padding: 12px 15px;
+            font-size: 0.9rem;
+        }
+        
+        .npc-table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid var(--border-color);
+            color: var(--text-color);
+            font-size: 0.9rem;
+        }
+        
+        .npc-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .npc-table tr:nth-child(even) {
+            background-color: var(--hover-bg, rgba(0,0,0,0.02));
+        }
+        
+        .npc-name {
+            font-weight: 600;
+            margin-bottom: 3px;
+        }
+        
+        /* Favorites list */
+        .favorites-list {
+            padding-left: 18px;
+            margin: 0;
+        }
+        
+        .favorites-list li {
+            margin-bottom: 3px;
+            font-size: 0.85rem;
+        }
+        
+        /* Reward tags */
+        .reward-tag {
+            display: inline-block;
+            background-color: var(--hover-bg);
+            color: var(--accent-color);
+            padding: 4px 8px;
+            border-radius: 12px;
+            margin-right: 5px;
+            margin-bottom: 5px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+        
+        /* Tip box styling */
+        .tip-box {
+            background-color: rgba(0, 113, 227, 0.1);
+            border-left: 4px solid var(--accent-color);
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 10px 10px 0;
+        }
+        
+        .tip-box p {
+            margin: 0;
+            color: var(--text-color);
+        }
+        
+        /* Mechanics info box */
+        .mechanics-info {
+            background-color: var(--hover-bg);
+            padding: 15px;
+            border-radius: 10px;
+            margin: 15px 0;
+        }
+        
+        .mechanics-info p {
+            margin-top: 0;
+        }
+        
+        /* Guide footer */
+        .guide-footer {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border-color);
+        }
+        
+        .guide-footer .note {
+            font-style: italic;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+        
+        /* Sidebar Styles */
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <img src="img/profile_pic.png" alt="RoxManager" class="logo-image">
+                RoxManager
+            </div>
+            <ul>
+                <li><a href="https://jadezzg.github.io/roxmanager/">Home</a></li>
+                <li><a href="https://jadezzg.github.io/roxmanager/tools/refine-simulator.html">Refine Simulator</a></li>
+                <li><a href="https://jadezzg.github.io/roxmanager/imprint.html">Legal Notice</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Theme toggle floating button -->
+    <button id="theme-toggle" class="theme-toggle-floating" aria-label="Toggle dark/light mode">
+        <i class="fas fa-moon"></i>
+        <i class="fas fa-sun"></i>
+    </button>
+
+    <!-- Add page navigation -->
+    <div class="page-navigation">
+        <a href="#" title="Back to top"><i class="fas fa-arrow-up"></i></a>
+        <a href="#basics" title="Gift Basics"><i class="fas fa-gift"></i></a>
+        <a href="#enchantment" title="Enchantment NPCs"><i class="fas fa-magic"></i></a>
+        <a href="#prontera" title="Prontera"><i class="fas fa-map-marker-alt"></i></a>
+        <a href="#comodo" title="Comodo"><i class="fas fa-umbrella-beach"></i></a>
+        <a href="#juno" title="Juno"><i class="fas fa-cloud"></i></a>
+    </div>
+
+    <div class="page-wrapper">
+        <div class="guide-title">
+            <h1>RoxManager - NPC Favor Guide</h1>
+            <p>Complete guide to NPC gifts and intimacy rewards in Ragnarok X: Next Generation</p>
+        </div>
+        
+        <div class="simulator-flex-wrapper">
+            <div class="left-sidebar">
+                <!-- YouTube Channel Container -->
+                <div class="social-container youtube-container">
+                    <a href="https://www.youtube.com/@JadezzGaming" target="_blank" rel="noopener">
+                        <div class="social-header">
+                            <img src="img/profile_pic.png" alt="Jadezz" class="social-profile-pic">
+                            <h3>JadezzGaming</h3>
+                        </div>
+                        <div class="social-content">
+                            <p>Check out RoX Next Generation guides and gameplay!</p>
+                            <span class="social-btn">Visit Channel</span>
+                        </div>
+                    </a>
+                </div>
+                
+                <!-- Discord Container -->
+                <div class="social-container discord-container">
+                    <a href="https://discord.gg/9buNDsK3Nt" target="_blank" rel="noopener">
+                        <div class="social-header">
+                            <img src="img/uni.png" alt="Ragnarok University" class="social-profile-pic">
+                            <h3>Ragnarok University</h3>
+                        </div>
+                        <div class="social-content">
+                            <p>Join our Discord community for tips and discussions!</p>
+                            <span class="social-btn">Join Discord</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            
+            <main>
+                <div class="favor-guide-container">
+                    <div class="guide-intro">
+                        <p>In Ragnarok X: Next Generation, gifting NPCs is more than just a friendly gesture. As you increase your intimacy with these characters, you'll unlock valuable rewards and bonuses. This guide covers all you need to know about the NPC favor system - from unlocking gift options to each NPC's favorite items and the rewards they offer.</p>
+                    </div>
+                    
+                    <div class="guide-nav">
+                        <a href="#basics" class="active">Gift Basics</a>
+                        <a href="#enchantment">Enchantment NPCs</a>
+                        <a href="#prontera">Prontera</a>
+                        <a href="#izlude">Izlude</a>
+                        <a href="#morroc">Morroc</a>
+                        <a href="#payon">Payon</a>
+                        <a href="#alberta">Alberta</a>
+                        <a href="#geffen">Geffen</a>
+                        <a href="#glast-heim">Glast Heim</a>
+                        <a href="#comodo">Comodo</a>
+                        <a href="#umbala">Umbala</a>
+                        <a href="#juno">Juno</a>
+                    </div>
+                    
+                    <!-- Original content sections -->
+                    <div class="guide-section" id="basics">
+                        <h2>NPC Gift Basics</h2>
+                        <p>In Ragnarok X: Next Generation, you can build relationships with NPCs by giving them gifts. This system rewards players who take the time to increase their intimacy with key characters throughout the game world.</p>
+                        
+                        <h3>How to Check NPC Gifting Progress</h3>
+                        <p>You can check your NPC Gifting progress by going to your <strong>Academy Handbook</strong>, then open the NPCs tab.</p>
+                        <p>From here, you'll find all of the list and the amount of progress you have with the NPCs. You can also claim here all of the rewards you get from the NPC.</p>
+                        
+                        <h3>How to Unlock NPC Gifting</h3>
+                        <p>You need to complete specific condition for you to gift the NPC. Once you have completed the condition, you'll get a notification you have unlocked the favor to the NPC. From here, the Gift icon will appear every time you talk to the NPC.</p>
+                        <p>Then click <strong>Gift</strong> button at the message box near the NPC's avatar.</p>
+                        <p>Then you can gift any item to the NPC, the progress will significantly increase when you give their favorite gift.</p>
+                        
+                        <h3>Gifting Mechanics</h3>
+                        <div class="mechanics-info">
+                            <p><strong>Important things to know about the gifting system:</strong></p>
+                            <ul>
+                                <li>You can give any item to any NPC, but each NPC has specific <strong>favorite gifts</strong> that provide increased intimacy</li>
+                                <li>Favorite gifts generally give <strong>+1.66%</strong> intimacy versus the standard +0.33%</li>
+                                <li>There's a daily limit to how many gifts you can give each NPC</li>
+                                <li>Intimacy progress is tracked from 0% to 100%</li>
+                                <li>Most NPCs provide rewards at 20%, 50%, and 100% intimacy levels</li>
+                                <li>Common rewards include Adventure EXP bonuses, but many NPCs offer special items or buffs</li>
+                            </ul>
+                        </div>
+                        
+                        <h3>Kingdom Pass Quest Tips</h3>
+                        <p>Attention to everyone, since the number of NPCs you can gift is limited, and this was recently added as part of the daily quest for Kingdom Pass. Eventually, you will complete all of the available NPC gifting and reached the 100% favor. When this happens, there will no longer be any NPCs to gift.</p>
+                        <div class="tip-box">
+                            <p><strong>Tip:</strong> To avoid this scenario, you should select a single NPC from the list dedicated for the Kingdom Pass quest and send him/her the gift he/she dislikes. This way, the favor level will remain below 100%, allowing you to still gift every day for the daily KP quest.</p>
+                        </div>
+                        
+                        <h3>NPC Enchantment Buff Weekly Quest</h3>
+                        <p>For all unlocked NPC enchantment favor, here are the two buffs you can get from the Weekly Favor Quests:</p>
+                        <ul>
+                            <li><strong>Magic Perception:</strong> Grants a chance of conserving enchantment items when enchanting. (Disappears after taking effect 3 times.)</li>
+                            <li><strong>Magic Surge:</strong> Grants a slightly higher chance of leveling up equipment when enchanting. (Disappears after taking effect 3 times.)</li>
+                        </ul>
+                        <p>Aside from the enchantment buff, you also need to gather items to complete the weekly quest.</p>
+                    </div>
+                    
+                    <div class="guide-section" id="enchantment">
+                        <h2>Enchantment NPCs</h2>
+                        <p>Enchantment NPCs are among the most important characters to build intimacy with, as they provide valuable buffs for the enchantment process. These NPCs are found in every major city and specialize in different equipment types.</p>
+                        
+                        <h3>Updates</h3>
+                        <p><strong>[UPDATE as of 02/18/2022]</strong> – Ragnarok X Next Generation finally releases the level 15 caps for Enchantment. Together with that, favor gift for every enchantment NPC in all cities are now giftable, you can now unlock their favors by enchanting 50 times.</p>
+                        
+                        <h3>Common Rewards</h3>
+                        <p>All NPC listed has a common favor rewards when you reach certain intimacy levels:</p>
+                        <ul>
+                            <li>20%: Adventure Experience +1</li>
+                            <li>50%: Adventure Experience +2</li>
+                            <li>100%: Adventure Experience +5</li>
+                            <li>100%: Unlocks next Enchantment Level cap (Lv. 15) and Weekly Quests</li>
+                        </ul>
+                        
+                        <h3>Enchantment NPC Locations</h3>
+                        <p>Each city has enchantment specialists for different equipment types:</p>
+                        
+                        <table class="npc-table">
+                            <thead>
+                                <tr>
+                                    <th>City</th>
+                                    <th>Weapon Enchantment</th>
+                                    <th>Armor Enchantment</th>
+                                    <th>Accessory Enchantment</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Prontera</td>
+                                    <td>Rowena</td>
+                                    <td>Dias</td>
+                                    <td>Amadeus</td>
+                                </tr>
+                                <tr>
+                                    <td>Morroc</td>
+                                    <td>Boonthom</td>
+                                    <td>Grit</td>
+                                    <td>Barton</td>
+                                </tr>
+                                <tr>
+                                    <td>Izlude</td>
+                                    <td>Javier</td>
+                                    <td>Ricky</td>
+                                    <td>Sepi</td>
+                                </tr>
+                                <tr>
+                                    <td>Alberta</td>
+                                    <td>Sylvia</td>
+                                    <td>Joplin</td>
+                                    <td>Rolf</td>
+                                </tr>
+                                <tr>
+                                    <td>Payon</td>
+                                    <td>Choro</td>
+                                    <td>Hanyi</td>
+                                    <td>Toto</td>
+                                </tr>
+                                <tr>
+                                    <td>Geffen</td>
+                                    <td>Percy</td>
+                                    <td>Tieh</td>
+                                    <td>Zelda</td>
+                                </tr>
+                                <tr>
+                                    <td>Glast Heim</td>
+                                    <td>Geoffrey</td>
+                                    <td>Lorraine</td>
+                                    <td>Gareth</td>
+                                </tr>
+                                <tr>
+                                    <td>Comodo</td>
+                                    <td>Ricard</td>
+                                    <td>Milla</td>
+                                    <td>Bianca</td>
+                                </tr>
+                                <tr>
+                                    <td>Umbala</td>
+                                    <td>Turum</td>
+                                    <td>Mapala</td>
+                                    <td>Nitel</td>
+                                </tr>
+                                <tr>
+                                    <td>Juno</td>
+                                    <td>Isbern</td>
+                                    <td>Elsa</td>
+                                    <td>Lucian</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        
+                        <h3>Unlocking Enchantment NPC Favor</h3>
+                        <p>For all enchantment NPCs, you need to enchant equipment <strong>50 times</strong> to unlock the ability to gift them. This count is specific to each city, so you'll need to enchant in each location separately to unlock all NPCs.</p>
+                        
+                        <h3>Common Favorite Gifts</h3>
+                        <p>While each enchantment NPC has their specific favorite items, there are patterns in what they prefer:</p>
+                        
+                        <ul>
+                            <li><strong>Weapon Enchanters:</strong> Old Weapons (+1.66%), Swordfish (+1.66%), Fishing Materials (+1.0%), Instance Extra Drop (Gift) (+1.0%), NPC/COC Materials (+0.33%)</li>
+                            <li><strong>Armor Enchanters:</strong> Butterfly Cowrie (+1.66%), Crystal Rose (+1.66%), Fishing/Gardening Materials (+1.0%), Bait/NPC/COC Materials (+0.33%)</li>
+                            <li><strong>Accessory Enchanters:</strong> Leaf Bookmark (+1.66%), Arcane Flower (+1.66%), Gardening Extra Drop/Materials (+1.0%), NPC/COC/Bait Materials (+0.33%)</li>
+                        </ul>
+                        
+                        <div class="tip-box">
+                            <p><strong>Gift Efficiency Tip:</strong> Most enchantment NPCs give +1.66% intimacy for their favorite items versus just +0.33% for regular items. This means gifting favorites is 5 times more efficient!</p>
+                        </div>
+                    </div>
+                    
+                    <!-- City sections will be added in subsequent edits -->
+                    <div class="guide-section" id="prontera">
+                        <h2>Prontera Enchantment NPCs</h2>
+                        <p>Alle Favoriten, Dislikes und Rewards laut <a href="https://gamingph.com/2021/06/all-list-of-npc-gift-favor-in-ragnarok-x-next-generation-rox/#morroc" target="_blank">gamingph.com</a>.</p>
+                        <div class="city-section">
+                            <div class="city-title">
+                                <h3>Prontera Enchantment NPCs</h3>
+                            </div>
+                            <table class="npc-table">
+                                <thead>
+                                    <tr>
+                                        <th>NPC</th>
+                                        <th>How to Unlock</th>
+                                        <th>Favorite Gifts</th>
+                                        <th>Dislikes</th>
+                                        <th>Rewards</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><div class="npc-name">Rowena</div><div>Weapon Enchanting Master</div></td>
+                                        <td>Enchant 50 times in Prontera</td>
+                                        <td>
+                                            <ul class="favorites-list">
+                                                <li>Old Weapons <strong>+1.66%</strong> (Gift Item/daily instance drops)</li>
+                                                <li>Swordfish <strong>+1.66%</strong> (Lv.8 Fishing – Orc Dungeon)</li>
+                                                <li>Instance Extra Drop (Gift) <strong>+1.0%</strong></li>
+                                                <li>Fishing Materials <strong>+1.0%</strong></li>
+                                                <li>NPC Merchant/COC Materials <strong>+0.33%</strong></li>
+                                            </ul>
+                                        </td>
+                                        <td>
+                                            <ul class="favorites-list">
+                                                <li>==Check back for updates==</li>
+                                            </ul>
+                                        </td>
+                                        <td>
+                                            <span class="reward-tag">20%: Adventure EXP +1</span>
+                                            <span class="reward-tag">50%: Adventure EXP +2</span>
+                                            <span class="reward-tag">100%: Adventure EXP +5</span>
+                                            <span class="reward-tag">100%: Lv.15 Enchant Cap & Weekly Quests</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><div class="npc-name">Dias</div><div>Armor Enchanting Master</div></td>
+                                        <td>Enchant 50 times in Prontera</td>
+                                        <td>
+                                            <ul class="favorites-list">
+                                                <li>Butterfly Cowrie <strong>+1.66%</strong> (Lv.5 Fishing – Underwater Cave)</li>
+                                                <li>Crystal Rose <strong>+1.66%</strong> (Lv.8 Gardening – Geffen Dungeon 2F/Orc Dungeon)</li>
+                                                <li>Fishing Materials <strong>+1.0%</strong></li>
+                                                <li>Gardening Materials <strong>+1.0%</strong></li>
+                                                <li>Bait/NPC Merchant/COC Materials <strong>+0.33%</strong></li>
+                                            </ul>
+                                        </td>
+                                        <td>
+                                            <ul class="favorites-list">
+                                                <li>==Check back for updates==</li>
+                                            </ul>
+                                        </td>
+                                        <td>
+                                            <span class="reward-tag">20%: Adventure EXP +1</span>
+                                            <span class="reward-tag">50%: Adventure EXP +2</span>
+                                            <span class="reward-tag">100%: Adventure EXP +5</span>
+                                            <span class="reward-tag">100%: Lv.15 Enchant Cap & Weekly Quests</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><div class="npc-name">Amadeus</div><div>Accessory Enchanting Master</div></td>
+                                        <td>Enchant 50 times in Prontera</td>
+                                        <td>
+                                            <ul class="favorites-list">
+                                                <li>Leaf Bookmark <strong>+1.66%</strong> (Gift Item/Gardening Extra Drops)</li>
+                                                <li>Arcane Flower <strong>+1.66%</strong> (Lv.1 Gardening – Mjolnir Mountain/Labyrinth Forest)</li>
+                                                <li>Gardening Extra Drop (Gift) <strong>+1.0%</strong></li>
+                                                <li>Gardening Materials <strong>+1.0%</strong></li>
+                                                <li>NPC Merchant/COC/Bait Materials <strong>+0.33%</strong></li>
+                                            </ul>
+                                        </td>
+                                        <td>
+                                            <ul class="favorites-list">
+                                                <li>==Check back for updates==</li>
+                                            </ul>
+                                        </td>
+                                        <td>
+                                            <span class="reward-tag">20%: Adventure EXP +1</span>
+                                            <span class="reward-tag">50%: Adventure EXP +2</span>
+                                            <span class="reward-tag">100%: Adventure EXP +5</span>
+                                            <span class="reward-tag">100%: Lv.15 Enchant Cap & Weekly Quests</span>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="guide-section" id="izlude">
+                        <h2>Izlude NPCs</h2>
+                        <p>Izlude bietet wichtige Enchantment NPCs für Waffen, Rüstung und Accessoires.</p>
+                        <div class="city-section">
+                            <div class="city-title">
+                                <h3>Izlude Enchantment NPCs</h3>
+                            </div>
+                            <table class="npc-table">
+                                <thead>
+                                    <tr>
+                                        <th>NPC</th>
+                                        <th>How to Unlock</th>
+                                        <th>Favorite Gifts</th>
+                                        <th>Rewards</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><div class="npc-name">Javier</div><div>Weapon Enchanting Master</div></td>
+                                        <td>Enchant 50 times in Izlude</td>
+                                        <td><ul class="favorites-list"><li>Old Weapons (+1.66%)</li><li>Swordfish (+1.66%)</li><li>Fishing Materials (+1.0%)</li><li>Instance Extra Drop (+1.0%)</li><li>NPC/COC Materials (+0.33%)</li></ul></td>
+                                        <td><span class="reward-tag">Adventure EXP</span><span class="reward-tag">Lv.15 Enchant Cap</span><span class="reward-tag">Weekly Quests</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><div class="npc-name">Ricky</div><div>Armor Enchanting Master</div></td>
+                                        <td>Enchant 50 times in Izlude</td>
+                                        <td><ul class="favorites-list"><li>Butterfly Cowrie (+1.66%)</li><li>Crystal Rose (+1.66%)</li><li>Fishing Materials (+1.0%)</li><li>Gardening Materials (+1.0%)</li><li>Bait/NPC/COC Materials (+0.33%)</li></ul></td>
+                                        <td><span class="reward-tag">Adventure EXP</span><span class="reward-tag">Lv.15 Enchant Cap</span><span class="reward-tag">Weekly Quests</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><div class="npc-name">Sepi</div><div>Accessory Enchanting Master</div></td>
+                                        <td>Enchant 50 times in Izlude</td>
+                                        <td><ul class="favorites-list"><li>Leaf Bookmark (+1.66%)</li><li>Arcane Flower (+1.66%)</li><li>Gardening Extra Drop (+1.0%)</li><li>Gardening Materials (+1.0%)</li><li>NPC/COC Materials (+0.33%)</li></ul></td>
+                                        <td><span class="reward-tag">Adventure EXP</span><span class="reward-tag">Lv.15 Enchant Cap</span><span class="reward-tag">Weekly Quests</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="guide-section" id="morroc">
+                        <h2>Morroc Enchantment NPCs</h2>
+                        <p>Alle Favoriten, Dislikes und Rewards laut <a href="https://gamingph.com/2021/06/all-list-of-npc-gift-favor-in-ragnarok-x-next-generation-rox/#morroc" target="_blank">gamingph.com</a>.</p>
+                        <div class="city-section">
+                            <div class="city-title">
+                                <h3>Morroc Enchantment NPCs</h3>
+                            </div>
+                            <table class="npc-table">
+                                <thead>
+                                    <tr>
+                                        <th>NPC</th>
+                                        <th>How to Unlock</th>
+                                        <th>Favorite Gifts</th>
+                                        <th>Dislikes</th>
+                                        <th>Rewards</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><div class="npc-name">Boonthom</div><div>Weapon Enchanting Master</div></td>
+                                        <td>Enchant 50 times in Morroc</td>
+                                        <td>
+                                            <ul class="favorites-list">
+                                                <li>Old Weapons <strong>+1.66%</strong></li>
+                                                <li>Swordfish <strong>+1.66%</strong></li>
+                                                <li>Instance Extra Drop (Gift) <strong>+1.0%</strong></li>
+                                                <li>Fishing Materials <strong>+1.0%</strong></li>
+                                                <li>NPC Merchant/COC Materials <strong>+0.33%</strong></li>
+                                            </ul>
+                                        </td>
+                                        <td><ul class="favorites-list"><li>==Check back for updates==</li></ul></td>
+                                        <td>
+                                            <span class="reward-tag">20%: Adventure EXP +1</span>
+                                            <span class="reward-tag">50%: Adventure EXP +2</span>
+                                            <span class="reward-tag">100%: Adventure EXP +5</span>
+                                            <span class="reward-tag">100%: Lv.15 Enchant Cap & Weekly Quests</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><div class="npc-name">Grit</div><div>Armor Enchanting Master</div></td>
+                                        <td>Enchant 50 times in Morroc</td>
+                                        <td>
+                                            <ul class="favorites-list">
+                                                <li>Butterfly Cowrie <strong>+1.66%</strong></li>
+                                                <li>Crystal Rose <strong>+1.66%</strong></li>
+                                                <li>Fishing Materials <strong>+1.0%</strong></li>
+                                                <li>Gardening Materials <strong>+1.0%</strong></li>
+                                                <li>Bait/NPC Merchant/COC Materials <strong>+0.33%</strong></li>
+                                            </ul>
+                                        </td>
+                                        <td><ul class="favorites-list"><li>==Check back for updates==</li></ul></td>
+                                        <td>
+                                            <span class="reward-tag">20%: Adventure EXP +1</span>
+                                            <span class="reward-tag">50%: Adventure EXP +2</span>
+                                            <span class="reward-tag">100%: Adventure EXP +5</span>
+                                            <span class="reward-tag">100%: Lv.15 Enchant Cap & Weekly Quests</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><div class="npc-name">Barton</div><div>Accessory Enchanting Master</div></td>
+                                        <td>Enchant 50 times in Morroc</td>
+                                        <td>
+                                            <ul class="favorites-list">
+                                                <li>Leaf Bookmark <strong>+1.66%</strong></li>
+                                                <li>Arcane Flower <strong>+1.66%</strong></li>
+                                                <li>Gardening Extra Drop (Gift) <strong>+1.0%</strong></li>
+                                                <li>Gardening Materials <strong>+1.0%</strong></li>
+                                                <li>NPC Merchant/COC/Bait Materials <strong>+0.33%</strong></li>
+                                            </ul>
+                                        </td>
+                                        <td><ul class="favorites-list"><li>==Check back for updates==</li></ul></td>
+                                        <td>
+                                            <span class="reward-tag">20%: Adventure EXP +1</span>
+                                            <span class="reward-tag">50%: Adventure EXP +2</span>
+                                            <span class="reward-tag">100%: Adventure EXP +5</span>
+                                            <span class="reward-tag">100%: Lv.15 Enchant Cap & Weekly Quests</span>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="guide-section" id="payon">
+                        <h2>Payon NPCs</h2>
+                        <p>Payon bietet wichtige Enchantment NPCs für Waffen, Rüstung und Accessoires.</p>
+                        <div class="city-section">
+                            <div class="city-title">
+                                <h3>Payon Enchantment NPCs</h3>
+                            </div>
+                            <table class="npc-table">
+                                <thead>
+                                    <tr>
+                                        <th>NPC</th>
+                                        <th>How to Unlock</th>
+                                        <th>Favorite Gifts</th>
+                                        <th>Rewards</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><div class="npc-name">Choro</div><div>Weapon Enchanting Master</div></td>
+                                        <td>Enchant 50 times in Payon</td>
+                                        <td><ul class="favorites-list"><li>Old Weapons (+1.66%)</li><li>Swordfish (+1.66%)</li><li>Fishing Materials (+1.0%)</li><li>Instance Extra Drop (+1.0%)</li><li>NPC/COC Materials (+0.33%)</li></ul></td>
+                                        <td><span class="reward-tag">Adventure EXP</span><span class="reward-tag">Lv.15 Enchant Cap</span><span class="reward-tag">Weekly Quests</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><div class="npc-name">Hanyi</div><div>Armor Enchanting Master</div></td>
+                                        <td>Enchant 50 times in Payon</td>
+                                        <td><ul class="favorites-list"><li>Butterfly Cowrie (+1.66%)</li><li>Crystal Rose (+1.66%)</li><li>Fishing Materials (+1.0%)</li><li>Gardening Materials (+1.0%)</li><li>Bait/NPC/COC Materials (+0.33%)</li></ul></td>
+                                        <td><span class="reward-tag">Adventure EXP</span><span class="reward-tag">Lv.15 Enchant Cap</span><span class="reward-tag">Weekly Quests</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><div class="npc-name">Toto</div><div>Accessory Enchanting Master</div></td>
+                                        <td>Enchant 50 times in Payon</td>
+                                        <td><ul class="favorites-list"><li>Leaf Bookmark (+1.66%)</li><li>Arcane Flower (+1.66%)</li><li>Gardening Extra Drop (+1.0%)</li><li>Gardening Materials (+1.0%)</li><li>NPC/COC Materials (+0.33%)</li></ul></td>
+                                        <td><span class="reward-tag">Adventure EXP</span><span class="reward-tag">Lv.15 Enchant Cap</span><span class="reward-tag">Weekly Quests</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="guide-section" id="alberta">
+                        <h2>Alberta NPCs</h2>
+                        <p>Alberta bietet wichtige Enchantment NPCs für Waffen, Rüstung und Accessoires.</p>
+                        <div class="city-section">
+                            <div class="city-title">
+                                <h3>Alberta Enchantment NPCs</h3>
+                            </div>
+                            <table class="npc-table">
+                                <thead>
+                                    <tr>
+                                        <th>NPC</th>
+                                        <th>How to Unlock</th>
+                                        <th>Favorite Gifts</th>
+                                        <th>Rewards</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><div class="npc-name">Sylvia</div><div>Weapon Enchanting Master</div></td>
+                                        <td>Enchant 50 times in Alberta</td>
+                                        <td><ul class="favorites-list"><li>Old Weapons (+1.66%)</li><li>Swordfish (+1.66%)</li><li>Fishing Materials (+1.0%)</li><li>Instance Extra Drop (+1.0%)</li><li>NPC/COC Materials (+0.33%)</li></ul></td>
+                                        <td><span class="reward-tag">Adventure EXP</span><span class="reward-tag">Lv.15 Enchant Cap</span><span class="reward-tag">Weekly Quests</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><div class="npc-name">Joplin</div><div>Armor Enchanting Master</div></td>
+                                        <td>Enchant 50 times in Alberta</td>
+                                        <td><ul class="favorites-list"><li>Butterfly Cowrie (+1.66%)</li><li>Crystal Rose (+1.66%)</li><li>Fishing Materials (+1.0%)</li><li>Gardening Materials (+1.0%)</li><li>Bait/NPC/COC Materials (+0.33%)</li></ul></td>
+                                        <td><span class="reward-tag">Adventure EXP</span><span class="reward-tag">Lv.15 Enchant Cap</span><span class="reward-tag">Weekly Quests</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><div class="npc-name">Rolf</div><div>Accessory Enchanting Master</div></td>
+                                        <td>Enchant 50 times in Alberta</td>
+                                        <td><ul class="favorites-list"><li>Leaf Bookmark (+1.66%)</li><li>Arcane Flower (+1.66%)</li><li>Gardening Extra Drop (+1.0%)</li><li>Gardening Materials (+1.0%)</li><li>NPC/COC Materials (+0.33%)</li></ul></td>
+                                        <td><span class="reward-tag">Adventure EXP</span><span class="reward-tag">Lv.15 Enchant Cap</span><span class="reward-tag">Weekly Quests</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="guide-section" id="geffen">
+                        <h2>Geffen NPCs</h2>
+                        <p>Geffen bietet wichtige Enchantment NPCs für Waffen, Rüstung und Accessoires.</p>
+                        <div class="city-section">
+                            <div class="city-title">
+                                <h3>Geffen Enchantment NPCs</h3>
+                            </div>
+                            <table class="npc-table">
+                                <thead>
+                                    <tr>
+                                        <th>NPC</th>
+                                        <th>How to Unlock</th>
+                                        <th>Favorite Gifts</th>
+                                        <th>Rewards</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><div class="npc-name">Percy</div><div>Weapon Enchanting Master</div></td>
+                                        <td>Enchant 50 times in Geffen</td>
+                                        <td><ul class="favorites-list"><li>Old Weapons (+1.66%)</li><li>Swordfish (+1.66%)</li><li>Fishing Materials (+1.0%)</li><li>Instance Extra Drop (+1.0%)</li><li>NPC/COC Materials (+0.33%)</li></ul></td>
+                                        <td><span class="reward-tag">Adventure EXP</span><span class="reward-tag">Lv.15 Enchant Cap</span><span class="reward-tag">Weekly Quests</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><div class="npc-name">Tieh</div><div>Armor Enchanting Master</div></td>
+                                        <td>Enchant 50 times in Geffen</td>
+                                        <td><ul class="favorites-list"><li>Butterfly Cowrie (+1.66%)</li><li>Crystal Rose (+1.66%)</li><li>Fishing Materials (+1.0%)</li><li>Gardening Materials (+1.0%)</li><li>Bait/NPC/COC Materials (+0.33%)</li></ul></td>
+                                        <td><span class="reward-tag">Adventure EXP</span><span class="reward-tag">Lv.15 Enchant Cap</span><span class="reward-tag">Weekly Quests</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><div class="npc-name">Zelda</div><div>Accessory Enchanting Master</div></td>
+                                        <td>Enchant 50 times in Geffen</td>
+                                        <td><ul class="favorites-list"><li>Leaf Bookmark (+1.66%)</li><li>Arcane Flower (+1.66%)</li><li>Gardening Extra Drop (+1.0%)</li><li>Gardening Materials (+1.0%)</li><li>NPC/COC Materials (+0.33%)</li></ul></td>
+                                        <td><span class="reward-tag">Adventure EXP</span><span class="reward-tag">Lv.15 Enchant Cap</span><span class="reward-tag">Weekly Quests</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="guide-section" id="glast-heim">
+                        <h2>Glast Heim NPCs</h2>
+                        <p>Glast Heim bietet wichtige Enchantment NPCs für Waffen, Rüstung und Accessoires.</p>
+                        <div class="city-section">
+                            <div class="city-title">
+                                <h3>Glast Heim Enchantment NPCs</h3>
+                            </div>
+                            <table class="npc-table">
+                                <thead>
+                                    <tr>
+                                        <th>NPC</th>
+                                        <th>How to Unlock</th>
+                                        <th>Favorite Gifts</th>
+                                        <th>Rewards</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><div class="npc-name">Geoffrey</div><div>Weapon Enchanting Master</div></td>
+                                        <td>Enchant 50 times in Glast Heim</td>
+                                        <td><ul class="favorites-list"><li>Old Weapons (+1.66%)</li><li>Swordfish (+1.66%)</li><li>Fishing Materials (+1.0%)</li><li>Instance Extra Drop (+1.0%)</li><li>NPC/COC Materials (+0.33%)</li></ul></td>
+                                        <td><span class="reward-tag">Adventure EXP</span><span class="reward-tag">Lv.15 Enchant Cap</span><span class="reward-tag">Weekly Quests</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><div class="npc-name">Lorraine</div><div>Armor Enchanting Master</div></td>
+                                        <td>Enchant 50 times in Glast Heim</td>
+                                        <td><ul class="favorites-list"><li>Butterfly Cowrie (+1.66%)</li><li>Crystal Rose (+1.66%)</li><li>Fishing Materials (+1.0%)</li><li>Gardening Materials (+1.0%)</li><li>Bait/NPC/COC Materials (+0.33%)</li></ul></td>
+                                        <td><span class="reward-tag">Adventure EXP</span><span class="reward-tag">Lv.15 Enchant Cap</span><span class="reward-tag">Weekly Quests</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><div class="npc-name">Gareth</div><div>Accessory Enchanting Master</div></td>
+                                        <td>Enchant 50 times in Glast Heim</td>
+                                        <td><ul class="favorites-list"><li>Leaf Bookmark (+1.66%)</li><li>Arcane Flower (+1.66%)</li><li>Gardening Extra Drop (+1.0%)</li><li>Gardening Materials (+1.0%)</li><li>NPC/COC Materials (+0.33%)</li></ul></td>
+                                        <td><span class="reward-tag">Adventure EXP</span><span class="reward-tag">Lv.15 Enchant Cap</span><span class="reward-tag">Weekly Quests</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="guide-section" id="comodo">
+                        <h2>Comodo Enchantment NPCs</h2>
+                        <p>Alle Favoriten, Dislikes und Rewards laut <a href="https://gamingph.com/2021/06/all-list-of-npc-gift-favor-in-ragnarok-x-next-generation-rox/#morroc" target="_blank">gamingph.com</a>.</p>
+                        <div class="city-section">
+                            <div class="city-title">
+                                <h3>Comodo Enchantment NPCs</h3>
+                            </div>
+                            <table class="npc-table">
+                                <thead>
+                                    <tr>
+                                        <th>NPC</th>
+                                        <th>How to Unlock</th>
+                                        <th>Favorite Gifts</th>
+                                        <th>Dislikes</th>
+                                        <th>Rewards</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><div class="npc-name">Ricard</div><div>Weapon Enchanting Master</div></td>
+                                        <td>Enchant 50 times in Comodo</td>
+                                        <td>
+                                            <ul class="favorites-list">
+                                                <li>Old Weapons <strong>+1.66%</strong></li>
+                                                <li>Swordfish <strong>+1.66%</strong></li>
+                                                <li>Instance Extra Drop (Gift) <strong>+1.0%</strong></li>
+                                                <li>Fishing Materials <strong>+1.0%</strong></li>
+                                                <li>NPC Merchant/COC Materials <strong>+0.33%</strong></li>
+                                            </ul>
+                                        </td>
+                                        <td><ul class="favorites-list"><li>==Check back for updates==</li></ul></td>
+                                        <td>
+                                            <span class="reward-tag">20%: Adventure EXP +1</span>
+                                            <span class="reward-tag">50%: Adventure EXP +2</span>
+                                            <span class="reward-tag">100%: Adventure EXP +5</span>
+                                            <span class="reward-tag">100%: Lv.15 Enchant Cap & Weekly Quests</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><div class="npc-name">Milla</div><div>Armor Enchanting Master</div></td>
+                                        <td>Enchant 50 times in Comodo</td>
+                                        <td>
+                                            <ul class="favorites-list">
+                                                <li>Butterfly Cowrie <strong>+1.66%</strong></li>
+                                                <li>Crystal Rose <strong>+1.66%</strong></li>
+                                                <li>Fishing Materials <strong>+1.0%</strong></li>
+                                                <li>Gardening Materials <strong>+1.0%</strong></li>
+                                                <li>Bait/NPC Merchant/COC Materials <strong>+0.33%</strong></li>
+                                            </ul>
+                                        </td>
+                                        <td><ul class="favorites-list"><li>==Check back for updates==</li></ul></td>
+                                        <td>
+                                            <span class="reward-tag">20%: Adventure EXP +1</span>
+                                            <span class="reward-tag">50%: Adventure EXP +2</span>
+                                            <span class="reward-tag">100%: Adventure EXP +5</span>
+                                            <span class="reward-tag">100%: Lv.15 Enchant Cap & Weekly Quests</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><div class="npc-name">Bianca</div><div>Accessory Enchanting Master</div></td>
+                                        <td>Enchant 50 times in Comodo</td>
+                                        <td>
+                                            <ul class="favorites-list">
+                                                <li>Leaf Bookmark <strong>+1.66%</strong></li>
+                                                <li>Arcane Flower <strong>+1.66%</strong></li>
+                                                <li>Gardening Extra Drop (Gift) <strong>+1.0%</strong></li>
+                                                <li>Gardening Materials <strong>+1.0%</strong></li>
+                                                <li>NPC Merchant/COC/Bait Materials <strong>+0.33%</strong></li>
+                                            </ul>
+                                        </td>
+                                        <td><ul class="favorites-list"><li>==Check back for updates==</li></ul></td>
+                                        <td>
+                                            <span class="reward-tag">20%: Adventure EXP +1</span>
+                                            <span class="reward-tag">50%: Adventure EXP +2</span>
+                                            <span class="reward-tag">100%: Adventure EXP +5</span>
+                                            <span class="reward-tag">100%: Lv.15 Enchant Cap & Weekly Quests</span>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    
+                    <div class="guide-section" id="umbala">
+                        <h2>Umbala NPCs</h2>
+                        <p>Umbala, home to the jungle tribe, features several important NPCs with valuable rewards.</p>
+                        
+                        <div class="city-section">
+                            <div class="city-title">
+                                <h3>Umbala Enchantment NPCs</h3>
+                            </div>
+                            
+                            <table class="npc-table">
+                                <thead>
+                                    <tr>
+                                        <th>NPC</th>
+                                        <th>How to Unlock</th>
+                                        <th>Favorite Gifts</th>
+                                        <th>Rewards</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <div class="npc-name">Turum</div>
+                                            <div>Weapon Enchanting Master</div>
+                                        </td>
+                                        <td>Enchant 50 times in Umbala</td>
+                                        <td>
+                                            <ul class="favorites-list">
+                                                <li>Old Weapons (+1.66%)</li>
+                                                <li>Swordfish (+1.66%)</li>
+                                                <li>Fishing Materials (+1.0%)</li>
+                                                <li>Instance Extra Drop (+1.0%)</li>
+                                                <li>NPC/COC Materials (+0.33%)</li>
+                                            </ul>
+                                        </td>
+                                        <td>
+                                            <span class="reward-tag">Adventure EXP</span>
+                                            <span class="reward-tag">Lv.15 Enchant Cap</span>
+                                            <span class="reward-tag">Weekly Quests</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="npc-name">Mapala</div>
+                                            <div>Armor Enchanting Master</div>
+                                        </td>
+                                        <td>Enchant 50 times in Umbala</td>
+                                        <td>
+                                            <ul class="favorites-list">
+                                                <li>Butterfly Cowrie (+1.66%)</li>
+                                                <li>Crystal Rose (+1.66%)</li>
+                                                <li>Fishing Materials (+1.0%)</li>
+                                                <li>Gardening Materials (+1.0%)</li>
+                                                <li>Bait/NPC/COC Materials (+0.33%)</li>
+                                            </ul>
+                                        </td>
+                                        <td>
+                                            <span class="reward-tag">Adventure EXP</span>
+                                            <span class="reward-tag">Lv.15 Enchant Cap</span>
+                                            <span class="reward-tag">Weekly Quests</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="npc-name">Nitel</div>
+                                            <div>Accessory Enchanting Master</div>
+                                        </td>
+                                        <td>Enchant 50 times in Umbala</td>
+                                        <td>
+                                            <ul class="favorites-list">
+                                                <li>Leaf Bookmark (+1.66%)</li>
+                                                <li>Arcane Flower (+1.66%)</li>
+                                                <li>Gardening Extra Drop (+1.0%)</li>
+                                                <li>Gardening Materials (+1.0%)</li>
+                                                <li>NPC/COC Materials (+0.33%)</li>
+                                            </ul>
+                                        </td>
+                                        <td>
+                                            <span class="reward-tag">Adventure EXP</span>
+                                            <span class="reward-tag">Lv.15 Enchant Cap</span>
+                                            <span class="reward-tag">Weekly Quests</span>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    
+                    <div class="guide-section" id="juno">
+                        <h2>Juno NPCs</h2>
+                        <p>Juno, the Sky City and home of the Sage Guild, features several important NPCs with valuable rewards.</p>
+                        
+                        <div class="city-section">
+                            <div class="city-title">
+                                <h3>Juno Enchantment NPCs</h3>
+                            </div>
+                            
+                            <table class="npc-table">
+                                <thead>
+                                    <tr>
+                                        <th>NPC</th>
+                                        <th>How to Unlock</th>
+                                        <th>Favorite Gifts</th>
+                                        <th>Rewards</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <div class="npc-name">Isbern</div>
+                                            <div>Weapon Enchanting Master</div>
+                                        </td>
+                                        <td>Enchant 50 times in Juno</td>
+                                        <td>
+                                            <ul class="favorites-list">
+                                                <li>Magic Waste (+1.66%)</li>
+                                                <li>Crystal Acanthodean (+1.66%)</li>
+                                                <li>Gardening Extra Drop (+1.0%)</li>
+                                                <li>Fishing Materials (+1.0%)</li>
+                                                <li>NPC/COC Materials (+0.33%)</li>
+                                            </ul>
+                                        </td>
+                                        <td>
+                                            <span class="reward-tag">Adventure EXP</span>
+                                            <span class="reward-tag">Lv.15 Enchant Cap</span>
+                                            <span class="reward-tag">Weekly Quests</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="npc-name">Elsa</div>
+                                            <div>Armor Enchanting Master</div>
+                                        </td>
+                                        <td>Enchant 50 times in Juno</td>
+                                        <td>
+                                            <ul class="favorites-list">
+                                                <li>Lakebed Pearl (+1.66%)</li>
+                                                <li>Piranha (+1.66%)</li>
+                                                <li>Fishing Extra Drop (+1.0%)</li>
+                                                <li>Fishing Materials (+1.0%)</li>
+                                                <li>NPC/COC Materials (+0.33%)</li>
+                                            </ul>
+                                        </td>
+                                        <td>
+                                            <span class="reward-tag">Adventure EXP</span>
+                                            <span class="reward-tag">Lv.15 Enchant Cap</span>
+                                            <span class="reward-tag">Weekly Quests</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="npc-name">Lucian</div>
+                                            <div>Accessory Enchanting Master</div>
+                                        </td>
+                                        <td>Enchant 50 times in Juno</td>
+                                        <td>
+                                            <ul class="favorites-list">
+                                                <li>Leaf Bookmark (+1.66%)</li>
+                                                <li>Arcane Flower (+1.66%)</li>
+                                                <li>Gardening Extra Drop (+1.0%)</li>
+                                                <li>Gardening Materials (+1.0%)</li>
+                                                <li>NPC/COC/Bait Materials (+0.33%)</li>
+                                            </ul>
+                                        </td>
+                                        <td>
+                                            <span class="reward-tag">Adventure EXP</span>
+                                            <span class="reward-tag">Lv.15 Enchant Cap</span>
+                                            <span class="reward-tag">Weekly Quests</span>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    
+                    <!-- Updated Footer info -->
+                    <div class="guide-footer">
+                        <h2>Making the Most of NPC Favor</h2>
+                        <p>Building intimacy with NPCs can significantly enhance your Ragnarok X: Next Generation experience. Here are some final tips:</p>
+                        
+                        <ul>
+                            <li><strong>Prioritize Enchantment NPCs</strong> - Their rewards have the most direct impact on your character's progression</li>
+                            <li><strong>Save high-value gifts</strong> for NPCs that provide the most valuable rewards</li>
+                            <li><strong>Remember Kingdom Pass quests</strong> - Keep at least one NPC below 100% intimacy</li>
+                            <li><strong>Check your Academy Handbook</strong> regularly to track your progress and claim rewards</li>
+                        </ul>
+                        
+                        <p>This guide is regularly updated with the latest information. Last updated: July 2023.</p>
+                        <p class="note">Note: NPC favorite gifts and rewards may change with game updates. If you notice any discrepancies or have additional information to share, please let us know!</p>
+                    </div>
+                </div>
+            </main>
+            
+            <div class="right-sidebar">
+                <div class="info-box">
+                    <h3>NPC Favor Tips</h3>
+                    <ul>
+                        <li>Focus on enchantment NPCs first for maximum benefits</li>
+                        <li>Use favorite gifts for 5x more intimacy points</li>
+                        <li>Select one NPC and give gifts they dislike to keep below 100% for Kingdom Pass quests</li>
+                        <li>All enchantment NPCs require 50 enchants to unlock</li>
+                        <li>Complete weekly quests for Magic Perception and Magic Surge buffs</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <img src="img/profile_pic.png" alt="RoxManager" class="footer-logo">
+            <p>&copy; 2025 RoxManager - Ragnarok X Tools. All rights reserved.</p>
+            <p class="disclaimer">This website is not affiliated with Gravity Co., Ltd. or Ragnarok X: Next Generation.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize all features on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            // Toggle dark/light theme
+            document.getElementById('theme-toggle').addEventListener('click', function() {
+                document.body.classList.toggle('dark-theme');
+                localStorage.setItem('theme', document.body.classList.contains('dark-theme') ? 'dark' : 'light');
+            });
+            
+            // Check for saved theme preference
+            if (localStorage.getItem('theme') === 'dark') {
+                document.body.classList.add('dark-theme');
+            }
+            
+            // Handle active navigation state
+            const navLinks = document.querySelectorAll('.guide-nav a');
+            const sections = document.querySelectorAll('.guide-section');
+            
+            // Set active link based on hash in URL
+            function setActiveLink() {
+                const hash = window.location.hash || '#basics';
+                navLinks.forEach(link => {
+                    if (link.getAttribute('href') === hash) {
+                        link.classList.add('active');
+                    } else {
+                        link.classList.remove('active');
+                    }
+                });
+                
+                // Scroll to the section if hash exists in URL
+                if (window.location.hash) {
+                    const targetSection = document.querySelector(window.location.hash);
+                    if (targetSection) {
+                        // Add offset for fixed header
+                        const headerHeight = document.querySelector('header').offsetHeight;
+                        const targetPosition = targetSection.getBoundingClientRect().top + window.pageYOffset - headerHeight - 20;
+                        window.scrollTo({
+                            top: targetPosition,
+                            behavior: 'smooth'
+                        });
+                    }
+                }
+            }
+            
+            // Set initial active link
+            setActiveLink();
+            
+            // Update active link when hash changes
+            window.addEventListener('hashchange', setActiveLink);
+            
+            // Update active link when scrolling
+            window.addEventListener('scroll', function() {
+                let currentSection = '';
+                const scrollPosition = window.scrollY + 100; // Offset for header
+                
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.offsetHeight;
+                    
+                    if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+                        currentSection = '#' + section.getAttribute('id');
+                    }
+                });
+                
+                if (currentSection) {
+                    navLinks.forEach(link => {
+                        link.classList.remove('active');
+                        if (link.getAttribute('href') === currentSection) {
+                            link.classList.add('active');
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html> 
