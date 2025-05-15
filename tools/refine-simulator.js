@@ -437,21 +437,11 @@ rangeSimBtn.addEventListener('click', function() {
                 } else if (rates.break && rand < rates.success + rates.fail + (rates.downgrade || 0) + rates.break) {
                     wouldBreak = true;
                     if (blessedChecked) {
-                        blessedStoneType = getSimBlessedStoneType(simLevelCurrent, blessedMaterial);
-                        if (blessedStoneType) {
-                            // Save item with blessed stone
-                            let qty = getSimBlessedStoneAmount();
-                            if (!simBlessedStones[blessedStoneType]) simBlessedStones[blessedStoneType] = { qty: 0, cost: 0 };
-                            simBlessedStones[blessedStoneType].qty += qty;
-                            simBlessedStones[blessedStoneType].cost += qty * getSimBlessedStonePrice(blessedStoneType, blessedMaterial);
-                            simTotal += qty * getSimBlessedStonePrice(blessedStoneType, blessedMaterial);
-                            simBlessed++;
-                            outcome = 'saved';
-                        } else {
-                            outcome = 'break';
-                            simBreak++;
-                        }
+                        // Always prevent break, simulate Blessed Stone usage, never increment simBreak
+                        simBlessed++;
+                        outcome = 'saved';
                     } else {
+                        // Blessed Stones not enabled, break happens
                         outcome = 'break';
                         simBreak++;
                     }
@@ -507,21 +497,11 @@ rangeSimBtn.addEventListener('click', function() {
                     } else if (rates.break && rand < rates.success + rates.fail + (rates.downgrade || 0) + rates.break) {
                         wouldBreak = true;
                         if (blessedChecked) {
-                            blessedStoneType = getSimBlessedStoneType(simLevelCurrent, blessedMaterial);
-                            if (blessedStoneType) {
-                                // Save item with blessed stone
-                                let qty = getSimBlessedStoneAmount();
-                                if (!simBlessedStones[blessedStoneType]) simBlessedStones[blessedStoneType] = { qty: 0, cost: 0 };
-                                simBlessedStones[blessedStoneType].qty += qty;
-                                simBlessedStones[blessedStoneType].cost += qty * getSimBlessedStonePrice(blessedStoneType, blessedMaterial);
-                                simTotal += qty * getSimBlessedStonePrice(blessedStoneType, blessedMaterial);
-                                simBlessed++;
-                                outcome = 'saved';
-                            } else {
-                                outcome = 'break';
-                                simBreak++;
-                            }
+                            // Always prevent break, simulate Blessed Stone usage, never increment simBreak
+                            simBlessed++;
+                            outcome = 'saved';
                         } else {
+                            // Blessed Stones not enabled, break happens
                             outcome = 'break';
                             simBreak++;
                         }
@@ -538,10 +518,10 @@ rangeSimBtn.addEventListener('click', function() {
                     } else if (rates.break && rand < rates.success + rates.fail + rates.break) {
                         wouldBreak = true;
                         if (blessedChecked) {
+                            // Always prevent break, use Blessed Stone, do NOT increment simBreak
                             blessedStoneType = getSimBlessedStoneType(simLevelCurrent, blessedMaterial);
-                            if (blessedStoneType) {
-                                // Save item with blessed stone
-                                let qty = getSimBlessedStoneAmount();
+                            let qty = getSimBlessedStoneAmount();
+                            if (blessedStoneType && qty > 0) {
                                 if (!simBlessedStones[blessedStoneType]) simBlessedStones[blessedStoneType] = { qty: 0, cost: 0 };
                                 simBlessedStones[blessedStoneType].qty += qty;
                                 simBlessedStones[blessedStoneType].cost += qty * getSimBlessedStonePrice(blessedStoneType, blessedMaterial);
@@ -549,10 +529,12 @@ rangeSimBtn.addEventListener('click', function() {
                                 simBlessed++;
                                 outcome = 'saved';
                             } else {
+                                // Fallback: if for some reason no stone type, treat as break
                                 outcome = 'break';
                                 simBreak++;
                             }
                         } else {
+                            // Blessed Stones not enabled, break happens
                             outcome = 'break';
                             simBreak++;
                         }
@@ -635,14 +617,14 @@ rangeSimBtn.addEventListener('click', function() {
     for (const [mat, data] of Object.entries(totalMaterials)) {
         const avgQty = Math.round(data.qty / numSimulations);
         const avgCost = Math.round(data.cost / numSimulations);
-        if (avgQty > 0) html += `<li>${mat}: ${avgQty} × <span style='color:#888;'>${avgCost.toLocaleString()} Crystals</span></li>`;
+        if (avgQty > 0) html += `<li>${avgQty.toLocaleString()} ${mat} = ${avgCost.toLocaleString()} Crystals</li>`;
     }
     
     // Calculate and display average blessed stones
     for (const [mat, data] of Object.entries(totalBlessedStones)) {
         const avgQty = Math.round(data.qty / numSimulations);
         const avgCost = Math.round(data.cost / numSimulations);
-        if (avgQty > 0) html += `<li>${mat}: ${avgQty} × <span style='color:#888;'>${avgCost.toLocaleString()} Crystals</span></li>`;
+        if (avgQty > 0) html += `<li>${avgQty.toLocaleString()} ${mat} = ${avgCost.toLocaleString()} Crystals</li>`;
     }
     
     html += `</ul></div>`;
@@ -923,19 +905,26 @@ function attemptRefine() {
             } else if (rates.break && rand < rates.success + rates.fail + (rates.downgrade || 0) + rates.break) {
                 wouldBreak = true;
                 if (blessedChecked) {
+                    // Always prevent break, use Blessed Stone, do NOT increment simBreak
                     blessedStoneType = getBlessedStoneType(currentRefineLevel, blessedMaterial);
-                    if (blessedStoneType) {
-                        addBlessedStoneToSession(blessedStoneType, blessedMaterial);
+                    let qty = getBlessedStoneAmount();
+                    if (blessedStoneType && qty > 0) {
+                        if (!sessionMaterials[blessedStoneType]) sessionMaterials[blessedStoneType] = { qty: 0, cost: 0 };
+                        sessionMaterials[blessedStoneType].qty += qty;
+                        sessionMaterials[blessedStoneType].cost += qty * getBlessedStonePrice(blessedStoneType, blessedMaterial);
+                        sessionTotal += qty * getBlessedStonePrice(blessedStoneType, blessedMaterial);
                         result = 'Saved by Blessed Stone';
                         colorClass = 'blessed';
                         blessedStoneUsed = true;
                     } else {
-                        result = 'Break';
+                        // Fallback: if for some reason no stone type, treat as break
+                        result = 'break';
                         colorClass = 'break';
                         broke = true;
                     }
                 } else {
-                    result = 'Break';
+                    // Blessed Stones not enabled, break happens
+                    result = 'break';
                     colorClass = 'break';
                     broke = true;
                 }
@@ -958,19 +947,26 @@ function attemptRefine() {
                 } else if (rates.break && rand < rates.success + rates.fail + (rates.downgrade || 0) + rates.break) {
                     wouldBreak = true;
                     if (blessedChecked) {
+                        // Always prevent break, use Blessed Stone, do NOT increment simBreak
                         blessedStoneType = getBlessedStoneType(currentRefineLevel, blessedMaterial);
-                        if (blessedStoneType) {
-                            addBlessedStoneToSession(blessedStoneType, blessedMaterial);
+                        let qty = getBlessedStoneAmount();
+                        if (blessedStoneType && qty > 0) {
+                            if (!sessionMaterials[blessedStoneType]) sessionMaterials[blessedStoneType] = { qty: 0, cost: 0 };
+                            sessionMaterials[blessedStoneType].qty += qty;
+                            sessionMaterials[blessedStoneType].cost += qty * getBlessedStonePrice(blessedStoneType, blessedMaterial);
+                            sessionTotal += qty * getBlessedStonePrice(blessedStoneType, blessedMaterial);
                             result = 'Saved by Blessed Stone';
                             colorClass = 'blessed';
                             blessedStoneUsed = true;
                         } else {
-                            result = 'Break';
+                            // Fallback: if for some reason no stone type, treat as break
+                            result = 'break';
                             colorClass = 'break';
                             broke = true;
                         }
                     } else {
-                        result = 'Break';
+                        // Blessed Stones not enabled, break happens
+                        result = 'break';
                         colorClass = 'break';
                         broke = true;
                     }
@@ -1017,18 +1013,26 @@ function attemptRefine() {
                 } else if (rates.break && rand < rates.success + rates.fail + rates.break) {
                     wouldBreak = true;
                     if (blessedChecked) {
+                        // Always prevent break, use Blessed Stone, do NOT increment simBreak
                         blessedStoneType = getBlessedStoneType(currentRefineLevel, blessedMaterial);
-                        if (blessedStoneType) {
+                        let qty = getBlessedStoneAmount();
+                        if (blessedStoneType && qty > 0) {
+                            if (!sessionMaterials[blessedStoneType]) sessionMaterials[blessedStoneType] = { qty: 0, cost: 0 };
+                            sessionMaterials[blessedStoneType].qty += qty;
+                            sessionMaterials[blessedStoneType].cost += qty * getBlessedStonePrice(blessedStoneType, blessedMaterial);
+                            sessionTotal += qty * getBlessedStonePrice(blessedStoneType, blessedMaterial);
                             result = 'Saved by Blessed & Protection Stone';
                             colorClass = 'blessed';
                             blessedStoneUsed = true;
                         } else {
-                            result = 'Break';
+                            // Fallback: if for some reason no stone type, treat as break
+                            result = 'break';
                             colorClass = 'break';
                             broke = true;
                         }
                     } else {
-                        result = 'Break';
+                        // Blessed Stones not enabled, break happens
+                        result = 'break';
                         colorClass = 'break';
                         broke = true;
                     }
@@ -1338,7 +1342,7 @@ function updateSessionSummaryBox() {
     }
     html += '<ul>';
     for (const [mat, data] of used) {
-        html += `<li><span>${mat}</span><span>${data.qty} × <span style='color:#888;'>${data.cost.toLocaleString()} Crystals</span></span></li>`;
+        html += `<li><span>${data.qty.toLocaleString()} ${mat} = ${data.cost.toLocaleString()} Crystals</span></li>`;
     }
     html += '</ul>';
     html += `<div class="total-row">Total: <span>${sessionTotal.toLocaleString()} Crystals</span></div>`;
