@@ -1,1 +1,9 @@
-Redirect 301 /ads.txt https://srv.adstxtmanager.com/19390/roxmanager.com
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="refresh" content="0; url=https://srv.adstxtmanager.com/19390/roxmanager.com">
+</head>
+<body>
+    <p>Redirecting to <a href="https://srv.adstxtmanager.com/19390/roxmanager.com">ads.txt</a>...</p>
+</body>
+</html>
