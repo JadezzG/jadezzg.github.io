@@ -26,4 +26,7 @@
             });
         });
     });
+
+    // Überprüfe, ob es Redirects gibt, die noch auf /roxmanager/ verweisen
+    // und ändere sie auf das Root-Verzeichnis
 })(); 
