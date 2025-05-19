@@ -2,3 +2,6 @@
 header('Location: https://srv.adstxtmanager.com/19390/roxmanager.com');
 exit;
 ?>
+
+google.com, pub-5278020554404687, DIRECT, f08c47fec0942fa0
+ezoic.com, 19390, RESELLER, 6a498e9586a548541f3ff8020629b531

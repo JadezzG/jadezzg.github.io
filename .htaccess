@@ -23,4 +23,7 @@
         Header set Pragma "no-cache"
         Header set Expires "0"
     </FilesMatch>
-</IfModule> 
+</IfModule>
+
+RewriteEngine On
+RewriteRule ^ads\.txt$ ads.txt.php [L] 
